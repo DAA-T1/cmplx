@@ -11,7 +11,7 @@ x-component.*
 ## Style Conventions.
 
 This project follows the [LLVM Coding Standards](https://llvm.org/docs/CodingStandards.html). Please
-use `clang-format -style=llvm` do this.
+use `clang-format -style=llvm` to do this.
 
 - In general, names should be in camel case (e.g. TextFileReader and isLValue()). Different kinds of declarations have
   different rules:
