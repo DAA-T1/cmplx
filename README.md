@@ -2,22 +2,31 @@
 
 A journey with complex numbers: DAA Assignment on Heapsort and Quicksort.
 
-## The question
+## The Question.
 
 > *Implement Heapsort and Quicksort on complex numbers, where < is defined as the L2 norm. Compare them according to
 their asymptotic time-space, complexity and real-time complexity. Then compare the y-component and, finally, the
 x-component.*
 
-## Style Conventions
+## Style Conventions.
 
-- Always `snake_case` for everything, except class names, for which we want `TitleCase`. Use descriptive names. They can
-  be long. Use english to make it make sense.
-    - An example of using English well: use `is_alive_and_well` for booleans, etc.
-- Use `clangformat` to format the styles, please use `{ }` for every code block. Use `LLVM` Coding standards.
-    - [LLVM Coding Standards](https://llvm.org/docs/CodingStandards.html)
-    - `clang-format -style=llvm` do this.
-- Add a header comment.
-- Use `.hpp` files.
+This project follows the [LLVM Coding Standards](https://llvm.org/docs/CodingStandards.html). Please
+use `clang-format -style=llvm` do this.
+
+- In general, names should be in camel case (e.g. TextFileReader and isLValue()). Different kinds of declarations have
+  different rules:
+    - Type names (including classes, structs, enums, typedefs, etc.) should be nouns and start with an upper-case
+      letter (
+      e.g. TextFileReader).
+    - Variable names should be nouns (as they represent state). The name should be camel case, and start with an upper
+      case
+      letter (e.g. Leader or Boats).
+    - Function names should be verb phrases (as they represent actions), and command-like function should be imperative.
+      The
+      name should be camel case, and start with a lower case letter (e.g. openFile() or isFoo()).
+- Add a header comment describing each source file.
+- Use `.h` files.
+- Files should follow snake_case naming, eg: `foo_bar.cpp`.
 
 ## Build System.
 
@@ -45,7 +54,7 @@ the following command from the project root directory.
 ./build/executables/print_hello
 ```
 
-## Testing
+## Testing.
 
 This project uses [GoogleTest](https://google.github.io/googletest/) for unit tests. Please write unit tests for all
 library related code.
