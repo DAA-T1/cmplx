@@ -46,3 +46,19 @@ the following command from the project root directory.
 ```
 
 ## Testing
+
+This project uses [GoogleTest](https://google.github.io/googletest/) for unit tests. Please write unit tests for all
+library related code.
+
+All test are stored in the `tests` directory. Follow the examples present in the `tests` directory
+especially `tests/CMakeLists.txt` to understand
+how tests are added.
+
+### Running tests
+
+Please run the following command from the project's build directory to run all tests
+after building the project of course.
+
+```cmd
+ctest --output-on-failure
+```
