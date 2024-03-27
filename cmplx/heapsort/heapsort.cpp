@@ -9,7 +9,7 @@
 #include <iostream>
 
 namespace cmplx::heapsort {
-void PrintHello() {
+void printHello() {
   std::cout << "Hello!" << std::endl;
 }
 int getMeaningOfLife() {

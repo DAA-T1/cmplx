@@ -7,6 +7,6 @@
 
 #include <cmplx/heapsort/heapsort.h>
 int main() {
-  cmplx::heapsort::PrintHello();
+  cmplx::heapsort::printHello();
   return 0;
 }

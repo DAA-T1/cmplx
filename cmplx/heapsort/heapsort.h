@@ -8,6 +8,6 @@
 #pragma once
 
 namespace cmplx::heapsort {
-void PrintHello();
+void printHello();
 int getMeaningOfLife();
 }// namespace cmplx::heapsort
