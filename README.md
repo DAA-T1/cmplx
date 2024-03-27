@@ -30,7 +30,7 @@ use `clang-format -style=llvm` to do this.
 
 ## Build System.
 
-This project uses [CMake](https://cmake.org/) as its build system! Please ensure that you have CMake install on your
+This project uses [CMake](https://cmake.org/) as its build system! Please ensure that you have CMake installed on your
 local machine.
 
 ### Building the project
