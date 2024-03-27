@@ -13,6 +13,6 @@ void printHello() {
   std::cout << "Hello!" << std::endl;
 }
 int getMeaningOfLife() {
-  return 69;
+  return 42;
 }
 }// namespace cmplx::heapsort
