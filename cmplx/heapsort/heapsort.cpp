@@ -15,4 +15,6 @@ void printHello() {
 int getMeaningOfLife() {
   return 42;
 }
+
+void IamWrong();
 }// namespace cmplx::heapsort
