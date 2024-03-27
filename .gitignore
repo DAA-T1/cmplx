@@ -4,6 +4,7 @@
 *.lo
 *.o
 *.obj
+*.d
 
 # Precompiled Headers
 *.gch
@@ -46,14 +47,11 @@ include/divisible/*
 ## Local
 
 .idea/
+.vscode/
 
 build/**/*
 
 include/*
 lib/*
 bin/*
-<<<<<<< HEAD
 test/test_runner
-=======
-test/test_runner
->>>>>>> fix-commits
