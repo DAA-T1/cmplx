@@ -1,7 +1,5 @@
-# Prerequisites
-*.d
-
 # Compiled Object files
+**/.DS_Store
 *.slo
 *.lo
 *.o
@@ -54,4 +52,8 @@ build/**/*
 include/*
 lib/*
 bin/*
+<<<<<<< HEAD
 test/test_runner
+=======
+test/test_runner
+>>>>>>> fix-commits
