@@ -21,4 +21,28 @@ x-component.*
 
 ## Build System.
 
-[@nikhilhenry](https://github.com/nikhilhenry) please add here.
+This project uses [CMake](https://cmake.org/) as its build system! Please ensure that you have CMake install on your
+local machine.
+
+### Building the project
+
+Run the following commands from the project's root directory.
+
+```cmd
+cmake -S . -B build
+```
+
+```cmd
+cmake --build build
+```
+
+### Running executables
+
+After building the project natively, executables such as `print_hello` can be run through
+the following command from the project root directory.
+
+```cmd
+./build/executables/print_hello
+```
+
+## Testing
