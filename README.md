@@ -1,6 +1,6 @@
-# cmplx-journey
+# cmplx
 
-A journey with complex numbers.
+A journey with complex numbers: DAA Assignment on Heapsort and Quicksort.
 
 ## The question
 
