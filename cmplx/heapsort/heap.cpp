@@ -7,6 +7,7 @@
 
 #include "heap.h"
 #include <cassert>
+#include <math.h>
 
 cmplx::heapsort::MaxHeap::MaxHeap(int *RawArr, int Length) {
   // ensuring that the first element is blank
@@ -14,6 +15,7 @@ cmplx::heapsort::MaxHeap::MaxHeap(int *RawArr, int Length) {
   assert(RawArr[0] == 0);
   this->HeapArr = RawArr;
   this->Length = Length;
+  this->buildMaxHeap();
 }
 void cmplx::heapsort::MaxHeap::maxHeapify(int Root) {
   auto Left = this->left(Root);
@@ -30,4 +32,9 @@ void cmplx::heapsort::MaxHeap::maxHeapify(int Root) {
 	exchange(Root, Largest);
 	this->maxHeapify(Largest);
   }
+}
+void cmplx::heapsort::MaxHeap::buildMaxHeap() {
+  this->HeapSize = this->Length - 1;
+  for (int Idx = floor(this->Length / 2); Idx > 0; Idx--)
+	this->maxHeapify(Idx);
 }

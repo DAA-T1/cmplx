@@ -36,3 +36,15 @@ TEST(HeapTest, MaxHeapifyTest) {
 	ASSERT_EQ(Heap->HeapArr[Idx], HeapNums[Idx]);
   }
 }
+
+// Test for buildHeap.
+TEST(HeapTest, BuildMaxHeapTest) {
+  int Nums[] = {0, 1, 2, 3};
+  int HeapNums[] = {0, 3, 2, 1};
+  auto *Heap = new cmplx::heapsort::MaxHeap(Nums, 4);
+  Heap->buildMaxHeap();
+  for (int Idx = 0; Idx < Heap->Length; Idx++) {
+	SCOPED_TRACE(Idx);//write to the console in which iteration the error occurred
+	ASSERT_EQ(Heap->HeapArr[Idx], HeapNums[Idx]);
+  }
+}
