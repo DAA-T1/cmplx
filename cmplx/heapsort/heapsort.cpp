@@ -1,21 +1,15 @@
-//===-- cmplx/heapsort/heapsort.cpp - Heapsort Implementation -----------===//
+//===-- cmplx/heapsort/heapsort.cpp - Dummy CMake Link File -----------===//
 ///
 /// \file
-/// This file contains the implementation of th Heapsort algorithm.
+/// This file exists to fix link language issues from CMake
 ///
 //===--------------------------------------------------------------------===//
 
-#include <cmplx/heapsort/heap.h>
 #include <cmplx/heapsort/heapsort.h>
 #include <iostream>
 
 namespace cmplx::heapsort {
 void printHello() {
   std::cout << "Hello!" << std::endl;
-}
-
-void sort(int *Arr, int Length) {
-  auto *Heap = new cmplx::heapsort::MaxHeap(Arr, Length);
-  Heap->heapSort();
 }
 }// namespace cmplx::heapsort
