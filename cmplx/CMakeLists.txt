@@ -1,2 +1,3 @@
 add_subdirectory(heapsort)
-add_subdirectory(superarr)
+add_subdirectory(linkedlist)
+add_subdirectory(readfile)

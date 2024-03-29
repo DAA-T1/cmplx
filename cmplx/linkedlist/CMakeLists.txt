@@ -1,0 +1,2 @@
+add_library(linkedlist linkedlist.cpp)
+target_link_libraries(linkedlist PUBLIC cxx_setup)
