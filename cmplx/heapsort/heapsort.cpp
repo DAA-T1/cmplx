@@ -13,9 +13,9 @@ namespace cmplx::heapsort {
 void printHello() {
   std::cout << "Hello!" << std::endl;
 }
-template<typename T>
-void sort(T *Arr, int Length) {
-  auto Heap = new cmplx::heapsort::MaxHeap(Arr, Length);
-  Heap->heapSort;
+
+void sort(int *Arr, int Length) {
+  auto *Heap = new cmplx::heapsort::MaxHeap(Arr, Length);
+  Heap->heapSort();
 }
 }// namespace cmplx::heapsort
