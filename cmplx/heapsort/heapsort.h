@@ -1,7 +1,7 @@
-//===-- cmplx/heapsort/heapsort.h - Heapsort Definition --------------===//
+//===-- cmplx/heapsort/heapsort.h - Heapsort Implementation --------------===//
 ///
 /// \file
-/// This file contains the implementation of th Heapsort algorithm.
+/// This file contains the implementation of the Heapsort algorithm.
 ///
 //===-----------------------------------------------------------------===//
 

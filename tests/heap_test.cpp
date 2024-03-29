@@ -1,7 +1,7 @@
-//===-- tests/heap_tests.cpp - Heapsort Implementation -----------===//
+//===-- tests/heap_test.cpp - Tests for Heap -----------===//
 ///
 /// \file
-/// This file contains the test cases for the Heapsort Data structure.
+/// This file contains the test cases for the Heap Data structure.
 ///
 //===--------------------------------------------------------------------===//
 

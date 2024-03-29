@@ -1,7 +1,7 @@
 //===-- cmplx/heapsort/heapsort.cpp - Dummy CMake Link File -----------===//
 ///
 /// \file
-/// This file exists to fix link language issues from CMake
+/// This file exists to fix link language issues from CMake.
 ///
 //===--------------------------------------------------------------------===//
 
