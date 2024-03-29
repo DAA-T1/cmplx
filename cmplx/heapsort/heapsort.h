@@ -9,4 +9,6 @@
 
 namespace cmplx::heapsort {
 void printHello();
+template<typename T>
+void sort(T *, int);
 }// namespace cmplx::heapsort
