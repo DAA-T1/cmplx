@@ -7,6 +7,8 @@
 
 #pragma once
 #include <iosfwd>
+#include <initializer_list>
+
 namespace cmplx::superarr {
     template <typename T>
     class SuperArray {
@@ -27,4 +29,4 @@ namespace cmplx::superarr {
                     return out;
             }
     };
-}// namespace cmplx::heapsort
+}
