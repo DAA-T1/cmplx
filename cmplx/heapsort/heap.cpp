@@ -8,7 +8,7 @@
 #include "heap.h"
 #include <cassert>
 
-cmplx::heapsort::Heap::Heap(int *RawArr, int Length) {
+cmplx::heapsort::MaxHeap::MaxHeap(int *RawArr, int Length) {
   // ensuring that the first element is blank
   // need to have an array of pointers to complex numbers
   assert(RawArr[0] == 0);

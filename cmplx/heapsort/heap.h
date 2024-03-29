@@ -8,12 +8,12 @@
 #pragma once
 
 namespace cmplx::heapsort {
-class Heap {
+class MaxHeap {
 public:
   int *HeapArr;
   int Length;
   int HeapSize;
-  Heap(int *, int);
+  MaxHeap(int *, int);
   // inline functions need to be declared here due to compiler issues
   inline int parent(int Idx) {
 	return Idx >> 1;

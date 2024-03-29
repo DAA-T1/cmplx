@@ -11,7 +11,7 @@
 // Test for parent, left and right idx logic.
 TEST(HeapTest, TreeRelationships) {
   int Nums[] = {0, 1, 2, 3, 4, 5, 6};
-  auto *Heap = new cmplx::heapsort::Heap(Nums, 7);
+  auto *Heap = new cmplx::heapsort::MaxHeap(Nums, 7);
 
   EXPECT_EQ(Heap->parent(2), 1);
   EXPECT_EQ(Heap->parent(3), 1);
