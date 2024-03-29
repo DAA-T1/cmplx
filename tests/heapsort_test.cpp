@@ -18,4 +18,16 @@ TEST(HeapSortTest, SortTest) {
 	SCOPED_TRACE(Idx);
 	ASSERT_EQ(Nums[Idx], Sorted[Idx]);
   }
+
+  int Nums1[] = {0, 2, 8, 19, 5, 3, 20, 4, 10,
+				 14, 17, 11, 9, 6, 7, 16, 1, 12,
+				 15, 13, 18};
+  int Sorted1[] = {
+	  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+  cmplx::heapsort::sort(Nums1, 21);
+  for (int Idx = 0; Idx < 6; Idx++) {
+	//write to the console in which iteration the error occurred
+	SCOPED_TRACE(Idx);
+	ASSERT_EQ(Nums1[Idx], Sorted1[Idx]);
+  }
 }
