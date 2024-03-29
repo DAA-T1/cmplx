@@ -13,7 +13,7 @@ namespace cmplx::heapsort {
 void printHello() {
   std::cout << "Hello!" << std::endl;
 }
-s template<typename T>
+template<typename T>
 void sort(T *Arr, int Length) {
   auto Heap = new cmplx::heapsort::MaxHeap(Arr, Length);
   Heap->heapSort;
