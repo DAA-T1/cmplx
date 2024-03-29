@@ -9,5 +9,4 @@
 
 namespace cmplx::heapsort {
 void printHello();
-int getMeaningOfLife();
 }// namespace cmplx::heapsort
