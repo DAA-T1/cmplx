@@ -62,8 +62,8 @@ public:
   }
 
   void heapSort() {
-	for (int idx = this->Length - 1; idx >= 2; idx--) {
-	  this->exchange(1, idx);
+	for (int Idx = this->Length - 1; Idx >= 2; Idx--) {
+	  this->exchange(1, Idx);
 	  this->HeapSize--;
 	  this->maxHeapify(1);
 	}
