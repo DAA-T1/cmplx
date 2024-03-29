@@ -24,5 +24,16 @@ public:
   inline int right(int Idx) {
 	return (Idx << 1) + 1;
   };
+
+  void maxHeapify(int);
+
+private:
+  // @todo write test case for this function
+  void
+  exchange(int A, int B) {
+	auto Temp = this->HeapArr[A];
+	this->HeapArr[A] = this->HeapArr[B];
+	this->HeapArr[B] = Temp;
+  }
 };
 }// namespace cmplx::heapsort

@@ -15,3 +15,19 @@ cmplx::heapsort::MaxHeap::MaxHeap(int *RawArr, int Length) {
   this->HeapArr = RawArr;
   this->Length = Length;
 }
+void cmplx::heapsort::MaxHeap::maxHeapify(int Root) {
+  auto Left = this->left(Root);
+  auto Right = this->right(Root);
+  int Largest;
+
+  if (Left <= this->HeapSize && this->HeapArr[Left] > this->HeapArr[Root])
+	Largest = Left;
+  else
+	Largest = Root;
+  if (Right <= this->HeapSize && this->HeapArr[Right] > this->HeapArr[Largest])
+	Largest = Right;
+  if (Largest != Root) {
+	exchange(Root, Largest);
+	this->maxHeapify(Largest);
+  }
+}
