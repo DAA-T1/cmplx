@@ -1,9 +1,9 @@
-//===-- tests/heapsort_test.cpp - Tests for Heapsort  -----------===//
+//===-- tests/heapsort_test.cpp - Tests for Heapsort  ------------===//
 ///
 /// \file
 /// This file contains the test cases for the Heapsort algorithm.
 ///
-//===--------------------------------------------------------------------===//
+//===-------------------------------------------------------------===//
 
 #include <cmplx/heapsort/heapsort.h>
 #include <gtest/gtest.h>

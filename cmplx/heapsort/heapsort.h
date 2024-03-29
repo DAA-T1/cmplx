@@ -1,4 +1,4 @@
-//===-- cmplx/heapsort/heapsort.h - Heapsort Implementation --------------===//
+//===-- cmplx/heapsort/heapsort.h - Heapsort Implementation ----------===//
 ///
 /// \file
 /// This file contains the implementation of the Heapsort algorithm.
