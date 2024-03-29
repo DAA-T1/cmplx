@@ -18,6 +18,16 @@ target_link_libraries(
         heapsort
 )
 
+add_executable(
+        heap_test
+        heap_test.cpp
+)
+target_link_libraries(
+        heap_test
+        GTest::gtest_main
+        heapsort
+)
+
 include(GoogleTest)
 gtest_discover_tests(hello_test)
 gtest_discover_tests(life_test)
