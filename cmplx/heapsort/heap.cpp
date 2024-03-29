@@ -34,6 +34,7 @@ void cmplx::heapsort::MaxHeap::maxHeapify(int Root) {
   }
 }
 void cmplx::heapsort::MaxHeap::buildMaxHeap() {
+  // 1 less than length since first element is discarded
   this->HeapSize = this->Length - 1;
   for (int Idx = floor(this->Length / 2); Idx > 0; Idx--)
 	this->maxHeapify(Idx);
