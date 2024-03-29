@@ -7,9 +7,8 @@
 
 #pragma once
 #include <iosfwd>
-#include <cmplx/superarr/superarr.h>
 
 namespace cmplx::readfile {
-
-    // cmplx::superarr::SuperArray<Complex>
-}
+// cmplx::superarr::SuperArray<int> readIntArray(string);
+// cmplx::superarr::SuperArray<Complex>
+} // namespace cmplx::readfile
