@@ -8,7 +8,7 @@
 #include <cmplx/heapsort/heapsort.h>
 #include <gtest/gtest.h>
 
-// Test for HeapSort.
+// Test for HeapSort with integers.
 TEST(HeapSortTest, SortTest) {
   int Nums[] = {0, 8, 6, 20, 10, 15};
   int Sorted[] = {0, 6, 8, 10, 15, 20};
@@ -29,5 +29,17 @@ TEST(HeapSortTest, SortTest) {
 	//write to the console in which iteration the error occurred
 	SCOPED_TRACE(Idx);
 	ASSERT_EQ(Nums1[Idx], Sorted1[Idx]);
+  }
+}
+
+// Test for HeapSort with floating point numbers.
+TEST(HeapSortTest, FloatSortTest) {
+  float Nums[] = {0, 0.0001, 0.2, -0.00000032, 10.132, 100.012, 100.011};
+  float Sorted[] = {0, -0.00000032, 0.0001, 0.2, 10.132, 100.011, 100.012};
+  cmplx::heapsort::sort(Nums, 7);
+  for (int Idx = 0; Idx < 7; Idx++) {
+	//write to the console in which iteration the error occurred
+	SCOPED_TRACE(Idx);
+	ASSERT_EQ(Nums[Idx], Sorted[Idx]);
   }
 }
