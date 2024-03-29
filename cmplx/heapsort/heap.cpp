@@ -39,3 +39,10 @@ void cmplx::heapsort::MaxHeap::buildMaxHeap() {
   for (int Idx = floor(this->Length / 2); Idx > 0; Idx--)
 	this->maxHeapify(Idx);
 }
+void cmplx::heapsort::MaxHeap::heapSort() {
+  for (int idx = this->Length - 1; idx >= 2; idx--) {
+	this->exchange(1, idx);
+	this->HeapSize--;
+	this->maxHeapify(1);
+  }
+}

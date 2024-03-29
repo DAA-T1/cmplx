@@ -27,6 +27,7 @@ public:
 
   void maxHeapify(int);
   void buildMaxHeap();
+  void heapSort();
 
 private:
   // @todo write test case for this function
