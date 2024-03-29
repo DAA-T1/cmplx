@@ -27,8 +27,8 @@ TEST(HeapTest, MaxHeapifyTest) {
   int Nums[] = {0, 1, 2, 3};
   int HeapNums[] = {0, 3, 2, 1};
   auto *Heap = new cmplx::heapsort::MaxHeap(Nums, 4);
-  // setting HeapSize manually since buildHeap hasn't been run
-  Heap->HeapSize = 4;
+  // setting the raw manually since heap property is established in the constructor.
+  Heap->HeapArr = Nums;
   Heap->maxHeapify(1);
 
   for (int Idx = 0; Idx < Heap->Length; Idx++) {
@@ -44,7 +44,8 @@ TEST(HeapTest, BuildMaxHeapTest) {
   auto *Heap = new cmplx::heapsort::MaxHeap(Nums, 4);
   Heap->buildMaxHeap();
   for (int Idx = 0; Idx < Heap->Length; Idx++) {
-	SCOPED_TRACE(Idx);//write to the console in which iteration the error occurred
+	//write to the console in which iteration the error occurred
+	SCOPED_TRACE(Idx);
 	ASSERT_EQ(Heap->HeapArr[Idx], HeapNums[Idx]);
   }
 }
