@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cmplx/heapsort/heapsort.h>
 #include <cmplx/readfile/readfile.h>
+#include <cmplx/quicksort/quicksort.h>
 #include <string.h>
 #include <chrono>
 
@@ -33,11 +34,10 @@ int main(int Argc, char* Argv[]) {
   int *Arr;
   int N;
   cmplx::readfile::readFromFile(FileName, &Arr, N);
-  for (int I = 0; i < N; i++) {
+  for (int I = 0; I < N; I++) {
 	std::cout << Arr[I] << " ";
   }
   std::cout << std::endl;
-  std::cout << Time << std::endl;
 
 
   auto Start = std::chrono::high_resolution_clock::now();
@@ -48,9 +48,13 @@ int main(int Argc, char* Argv[]) {
 	cmplx::quicksort::sort(Arr, N);
   }
   auto Stop = std::chrono::high_resolution_clock::now();
-  auto Duration = duration_cast<std::chrono::microseconds>(Stop - Start);
+  auto Duration = std::chrono::duration_cast<std::chrono::microseconds>(Stop - Start);
   if (Time) {
   std::cout << "Duration (in microseconds): " << Duration.count() << std::endl;
   }
+  for (int I = 0; I < N; I++) {
+	std::cout << Arr[I] << " ";
+  }
+  std::cout << std::endl;
 
 }
