@@ -29,5 +29,5 @@ TEST(HeapSortTest, FloatSortTest) {
   float Nums[] = {0, 0.0001, 0.2, -0.00000032, 10.132, 100.012, 100.011};
   cmplx::heapsort::sort(Nums, 7);
 
-  ASSERT_THAT(Nums, testing::ElementsAre(0, -0.00000032, 0.0001, 0.2, 10.132, 100.011, 100.012));
+  ASSERT_THAT(Nums, testing::ElementsAre(-0.00000032, 0, 0.0001, 0.2, 10.132, 100.011, 100.012));
 }
