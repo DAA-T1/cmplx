@@ -1,3 +1,3 @@
 
-add_executable(print_hello print_hello.cpp)
-target_link_libraries(print_hello PRIVATE heapsort cxx_setup)
+add_executable(main main.cpp)
+target_link_libraries(main readfile superarr heapsort)
