@@ -7,7 +7,8 @@
 
 #include <cmplx/quicksort/quicksort.h>
 
-namespace cmplx::quicksort {
+using namespace cmplx::quicksort;
+
 template<typename T>
 void swap(T *A, T *B) {
   auto Temp = *A;
@@ -39,7 +40,6 @@ void qSort(std::vector<int> &Vec, int Left, int Right) {
   qSort(Vec, Middle + 1, Right);
 }
 
-void sort(std::vector<int> &Vec) {
+void cmplx::quicksort::sort(std::vector<int> &Vec) {
   qSort(Vec, 0, Vec.size() - 1);
 }
-}// namespace cmplx::quicksort
