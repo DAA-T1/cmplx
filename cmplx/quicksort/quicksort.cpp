@@ -5,7 +5,7 @@
 ///
 //===--------------------------------------------------------------------===//
 
-#include <cmplx/quicksort/quicksort.hpp>
+#include <cmplx/quicksort/quicksort.h>
 
 namespace cmplx::quicksort {
 int partition(std::vector<int> &Vec, int Left, int Right) {
