@@ -13,15 +13,16 @@ class Test {
 public:
   int Val;
   int pow(int A, int B) {
-	if (B == 0) {return 1;}
-	else {
+	if (B == 0) {
+	  return 1;
+	} else {
 	  return A * pow(A, B - 1);
 	}
   }
   Test() {
 	Val = 0;
   }
-   Test(std::string Str) {
+  Test(std::string Str) {
 	Val = 0;
 	int Len = Str.length();
 	for (int i = 0; i < Len; i++) {
@@ -29,9 +30,7 @@ public:
 	}
   }
   friend std::ostream &operator<<(std::ostream &Out, Test &C) {
-
-	  Out << C.Val;
-
+	Out << C.Val;
 	return Out;
   }
 };
