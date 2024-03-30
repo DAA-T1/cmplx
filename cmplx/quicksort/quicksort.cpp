@@ -17,18 +17,25 @@ void swap(T *A, T *B) {
 }
 
 int partition(std::vector<int> &Vec, int Left, int Right) {
-  int Pivot = Vec[Right];
+  int Pivot = Vec[Left];
   int I = Left - 1;
+  int J = Right + 1;
 
-  for (int J = Left; J < Right; J++) {
-	if (Vec[J] <= Pivot) {
+  while (true) {
+	do {
 	  I++;
-	  swap(&Vec[I], &Vec[J]);
-	}
-  }
-  swap(&Vec[I + 1], &Vec[Right]);
+	} while (Vec[I] < Pivot);
 
-  return I + 1;
+	do {
+	  J--;
+	} while (Vec[J] > Pivot);
+
+	if (I >= J) {
+	  return J;
+	}
+	swap(&Vec[I], &Vec[J]);
+  }
+  // unreachable
 }
 
 void qSort(std::vector<int> &Vec, int Left, int Right) {
@@ -36,7 +43,7 @@ void qSort(std::vector<int> &Vec, int Left, int Right) {
 	return;
   }
   int Middle = partition(Vec, Left, Right);
-  qSort(Vec, Left, Middle - 1);
+  qSort(Vec, Left, Middle);
   qSort(Vec, Middle + 1, Right);
 }
 
