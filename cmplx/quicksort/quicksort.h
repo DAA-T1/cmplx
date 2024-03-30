@@ -7,8 +7,6 @@
 
 #pragma once
 
-#include <vector>
-
 namespace cmplx::quicksort {
 template<typename T>
 void swap(T *A, T *B) {
@@ -18,40 +16,40 @@ void swap(T *A, T *B) {
 }
 
 template<typename T>
-int partition(std::vector<T> &Vec, int Left, int Right) {
-  int Pivot = Vec[Left];
+int partition(T *Arr, int Left, int Right) {
+  T Pivot = Arr[Left];
   int I = Left - 1;
   int J = Right + 1;
 
   while (true) {
 	do {
 	  I++;
-	} while (Vec[I] < Pivot);
+	} while (Arr[I] < Pivot);
 
 	do {
 	  J--;
-	} while (Vec[J] > Pivot);
+	} while (Arr[J] > Pivot);
 
 	if (I >= J) {
 	  return J;
 	}
-	swap(&Vec[I], &Vec[J]);
+	swap(&Arr[I], &Arr[J]);
   }
   // unreachable
 }
 
 template<typename T>
-void qSort(std::vector<T> &Vec, int Left, int Right) {
+void qSort(T *Arr, int Left, int Right) {
   if (Left >= Right) {
 	return;
   }
-  int Middle = partition(Vec, Left, Right);
-  qSort(Vec, Left, Middle);
-  qSort(Vec, Middle + 1, Right);
+  int Middle = partition(Arr, Left, Right);
+  qSort(Arr, Left, Middle);
+  qSort(Arr, Middle + 1, Right);
 }
 
 template<typename T>
-void sort(std::vector<T> &Vec) {
-  qSort(Vec, 0, Vec.size() - 1);
+void sort(T *Arr, int Len) {
+  qSort(Arr, 0, Len - 1);
 }
 }// namespace cmplx::quicksort
