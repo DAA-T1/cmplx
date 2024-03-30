@@ -29,3 +29,10 @@ TEST(QuickSortTest, TestForReal) {
 
   ASSERT_THAT(V, testing::ElementsAre(-42, -12, 0, 2, 7, 13, 21, 42));
 }
+
+TEST(QuickSortTest, TestForRealAgain) {
+  std::vector<int> V{100000, 10000, 1000, 100, 10, 1, -1, -10, -100, -1000, -10000, -100000};
+  cmplx::quicksort::sort(V);
+
+  ASSERT_THAT(V, testing::ElementsAre(-100000, -10000, -1000, -100, -10, -1, 1, 10, 100, 1000, 10000, 100000));
+}
