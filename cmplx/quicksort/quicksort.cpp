@@ -8,6 +8,13 @@
 #include <cmplx/quicksort/quicksort.h>
 
 namespace cmplx::quicksort {
+template<typename T>
+void swap(T *A, T *B) {
+  auto Temp = *A;
+  *A = *B;
+  *B = Temp;
+}
+
 int partition(std::vector<int> &Vec, int Left, int Right) {
   int Pivot = Vec[Right];
   int I = Left - 1;
@@ -15,10 +22,10 @@ int partition(std::vector<int> &Vec, int Left, int Right) {
   for (int J = Left; J < Right; J++) {
 	if (Vec[J] <= Pivot) {
 	  I++;
-	  std::swap(Vec[I], Vec[J]);
+	  swap(&Vec[I], &Vec[J]);
 	}
   }
-  std::swap(Vec[I + 1], Vec[Right]);
+  swap(&Vec[I + 1], &Vec[Right]);
 
   return I + 1;
 }
