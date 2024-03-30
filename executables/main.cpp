@@ -3,10 +3,10 @@
 //
 
 #include <iostream>
-#include <cmplx/superarr/superarr.h>
 #include <cmplx/heapsort/heapsort.h>
 #include <cmplx/readfile/readfile.h>
 #include <string.h>
+#include <chrono>
 
 int main(int Argc, char* Argv[]) {
   if (Argc < 2) {
@@ -16,21 +16,41 @@ int main(int Argc, char* Argv[]) {
   std::string Sort;
   bool Time = false;
   std::string FileName;
-  for (int i = 1; i < Argc; i++) {
-	if (!strcmp(Argv[i], "--heap")) {
+  for (int I = 1; I < Argc; I++) {
+	if (!strcmp(Argv[I], "--heap")) {
 	  Sort = "heap";
 	}
-	else if (!strcmp(Argv[i], "--quick")) {
+	else if (!strcmp(Argv[I], "--quick")) {
 	  Sort = "quick";
 	}
-	else if (!strcmp(Argv[i], "--time")) {
+	else if (!strcmp(Argv[I], "--time")) {
 	  Time = true;
 	  }
-	  else if (!strcmp(Argv[i], "--file")) {
-		FileName = Argv[++i];
+	  else if (!strcmp(Argv[I], "--file")) {
+		FileName = Argv[++I];
 	  }
   }
-  auto Arr = cmplx::readfile::readFromFile<int>(FileName);
-  std::cout << Arr << std::endl;
+  int *Arr;
+  int N;
+  cmplx::readfile::readFromFile(FileName, &Arr, N);
+  for (int I = 0; i < N; i++) {
+	std::cout << Arr[I] << " ";
+  }
+  std::cout << std::endl;
+  std::cout << Time << std::endl;
+
+
+  auto Start = std::chrono::high_resolution_clock::now();
+  if (Sort == "heap") {
+	cmplx::heapsort::sort(Arr, N);
+  }
+  else if (Sort == "quick") {
+	cmplx::quicksort::sort(Arr, N);
+  }
+  auto Stop = std::chrono::high_resolution_clock::now();
+  auto Duration = duration_cast<std::chrono::microseconds>(Stop - Start);
+  if (Time) {
+  std::cout << "Duration (in microseconds): " << Duration.count() << std::endl;
+  }
 
 }

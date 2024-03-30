@@ -6,14 +6,12 @@
 //===-----------------------------------------------------------------===//
 
 #pragma once
-#include "cmplx/superarr/superarr.h"
 #include <fstream>
 #include <iostream>
 #include <string>
 
 namespace cmplx::readfile {
-template<typename T>
-cmplx::superarr::SuperArray<T> readFromFile(std::string FileName) {
+void readFromFile(std::string FileName, int** Arr, int& N) {
   std::string Line;
   std::ifstream MyFile(FileName);
 
@@ -26,26 +24,25 @@ cmplx::superarr::SuperArray<T> readFromFile(std::string FileName) {
   }
   Line += ',';
   int Count = 0;
-  for (auto &c : Line) {
-	if (c == ',') {
+  for (auto &C : Line) {
+	if (C == ',') {
 	  Count++;
 	}
   }
-
-  cmplx::superarr::SuperArray<T> Array(Count);
+  N = Count;
+  *Arr = new int[N];
 
   int i = 0;
   std::string Tmp = "";
-  for (auto &c : Line) {
-	if (c == ',') {
-	  Array[i++] = stoi(Tmp);
+  for (auto &C : Line) {
+	if (C == ',') {
+	  (*Arr)[i++] = stoi(Tmp);
 	  Tmp = "";
-	} else if (c == ' ') {
+	} else if (C == ' ') {
 	  continue;
 	} else {
-	  Tmp += c;
+	  Tmp += C;
 	}
   }
-  return Array;
 }
 }// namespace cmplx::readfile
