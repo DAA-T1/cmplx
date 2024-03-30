@@ -1,20 +1,22 @@
-
 add_executable(
-        hello_test
-        hello_test.cpp
+        heap_test
+        heap_test.cpp
 )
 target_link_libraries(
-        hello_test
+        heap_test
         GTest::gtest_main
+        GTest::gmock_main
+        heapsort
 )
 
 add_executable(
-        life_test
-        life_test.cpp
+        heapsort_test
+        heapsort_test.cpp
 )
 target_link_libraries(
-        life_test
+        heapsort_test
         GTest::gtest_main
+        GTest::gmock_main
         heapsort
 )
 
@@ -30,6 +32,7 @@ target_link_libraries(
 )
 
 include(GoogleTest)
-gtest_discover_tests(hello_test)
-gtest_discover_tests(life_test)
+
 gtest_discover_tests(quicksort_test)
+gtest_discover_tests(heap_test)
+gtest_discover_tests(heapsort_test)
