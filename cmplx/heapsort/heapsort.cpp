@@ -1,9 +1,9 @@
-//===-- cmplx/heapsort/heapsort.cpp - Heapsort Implementation -----------===//
+//===-- cmplx/heapsort/heapsort.cpp - Dummy CMake Link File ----------===//
 ///
 /// \file
-/// This file contains the implementation of th Heapsort algorithm.
+/// This file exists to fix link language issues from CMake.
 ///
-//===--------------------------------------------------------------------===//
+//===-----------------------------------------------------------------===//
 
 #include <cmplx/heapsort/heapsort.h>
 #include <iostream>
@@ -11,8 +11,5 @@
 namespace cmplx::heapsort {
 void printHello() {
   std::cout << "Hello!" << std::endl;
-}
-int getMeaningOfLife() {
-  return 42;
 }
 }// namespace cmplx::heapsort
