@@ -14,29 +14,40 @@ void swap(T *A, T *B) {
   *A = *B;
   *B = Temp;
 }
-
 template<typename T>
 int partition(T *Arr, int Left, int Right) {
   T Pivot = Arr[Left];
-  int I = Left - 1;
-  int J = Right + 1;
-
-  while (true) {
-	do {
+  int I = Left;
+  int J = Right;
+  while (I < J) {
+	while (Arr[I] <= Pivot && I < Right) {
 	  I++;
-	} while (Arr[I] < Pivot);
-
-	do {
-	  J--;
-	} while (Arr[J] > Pivot);
-
-	if (I >= J) {
-	  return J;
 	}
-	swap(&Arr[I], &Arr[J]);
+	while (Arr[J] > Pivot && J > Left) {
+	  J--;
+	}
+	if (I < J) {
+	  swap(&Arr[I], &Arr[J]);
+	}
   }
-  // unreachable
+  swap(&Arr[J], &Arr[Left]);
+  return J;
 }
+
+//template<typename T>
+//int partition(T *Vec, int Left, int Right) {
+//  T Pivot = Vec[Right];
+//  int I = Left - 1;
+//
+//  for (int J = Left; J < Right; J++) {
+//	if (Vec[J] <= Pivot) {
+//	  I++;
+//	  swap(&Vec[I], &Vec[J]);
+//	}
+//  }
+//  swap(&Vec[I + 1], &Vec[Right]);
+//  return I + 1;
+//}
 
 template<typename T>
 void qSort(T *Arr, int Left, int Right) {
@@ -44,7 +55,7 @@ void qSort(T *Arr, int Left, int Right) {
 	return;
   }
   int Middle = partition(Arr, Left, Right);
-  qSort(Arr, Left, Middle);
+  qSort(Arr, Left, Middle - 1);
   qSort(Arr, Middle + 1, Right);
 }
 

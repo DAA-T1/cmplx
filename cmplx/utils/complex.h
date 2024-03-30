@@ -22,17 +22,13 @@ public:
   ComplexNumber() : Real(0), Imaginary(0) {}
 
   bool operator<(const ComplexNumber &Other) {
-	if (this == &Other) {
+	if (*this == Other) {
 	  if (this->Real < Other.Real) {
 		return true;
-	  } else if (this->Real == Other.Real) {
-		return (this->Imaginary <= Other.Imaginary);
-	  } else {
-		return false;
 	  }
-	} else {
-	  return (this->getL2Norm() <= Other.getL2Norm());
+	  return (this->Imaginary < Other.Imaginary);
 	}
+	return (this->getL2Norm() < Other.getL2Norm());
   }
 
   bool operator>(const ComplexNumber &Other) {
@@ -48,11 +44,11 @@ public:
   }
 
   bool operator==(const ComplexNumber &Other) {
-	return ((this->Real == Other.Real) && (this->Imaginary == Other.Imaginary));
+	return (this->getL2Norm() == Other.getL2Norm());
   }
 
   bool operator!=(const ComplexNumber &Other) {
-	return ((this->Real != Other.Real) || (this->Imaginary != Other.Imaginary));
+	return !(*this == Other);
   }
 
   friend std::ostream &operator<<(std::ostream &os, const ComplexNumber &toprint);
@@ -64,12 +60,13 @@ public:
   ComplexNumber(const std::string Text) {
 
 	if (Text.find('+') == std::string::npos) {
-	  sscanf(Text.c_str(), "%lf - %lfi", &(this->Real), &(this->Imaginary));
-	  this->Imaginary *= -1;
+	  sscanf(Text.c_str(), "%lf - %lfi", &(Real), &(Imaginary));
+	  Imaginary *= -1;
 	} else {
-	  sscanf(Text.c_str(), "%lf + %lfi", &(this->Real), &(this->Imaginary));
+	  sscanf(Text.c_str(), "%lf + %lfi", &(Real), &(Imaginary));
 	}
   }
+
 };
 
 std::ostream &operator<<(std::ostream &os, const ComplexNumber &toprint) {

@@ -21,7 +21,9 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-add_library(cxx_setup INTERFACE)
+add_library(cxx_setup INTERFACE
+        cmplx/utils/complex.cpp
+        cmplx/utils/complex.cpp)
 target_compile_options(cxx_setup INTERFACE -Wall -Wpedantic -Wextra)
 target_compile_features(cxx_setup INTERFACE cxx_std_17)
 target_include_directories(cxx_setup INTERFACE ${PROJECT_SOURCE_DIR})

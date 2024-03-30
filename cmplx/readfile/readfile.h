@@ -9,9 +9,9 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-
+#include <cmplx/utils/complex.h>
 namespace cmplx::readfile {
-void readFromFile(std::string FileName, int** Arr, int& N) {
+void readFromFile(std::string FileName, cmplx::utils::ComplexNumber** Arr, int& N) {
   std::string Line;
   std::ifstream MyFile(FileName);
 
@@ -30,13 +30,13 @@ void readFromFile(std::string FileName, int** Arr, int& N) {
 	}
   }
   N = Count;
-  *Arr = new int[N];
+  *Arr = new cmplx::utils::ComplexNumber[N]();
 
-  int i = 0;
+  int I = 0;
   std::string Tmp = "";
   for (auto &C : Line) {
 	if (C == ',') {
-	  (*Arr)[i++] = stoi(Tmp);
+	  (*Arr)[I++] = cmplx::utils::ComplexNumber(Tmp);
 	  Tmp = "";
 	} else if (C == ' ') {
 	  continue;
