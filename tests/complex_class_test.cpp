@@ -26,7 +26,7 @@ TEST(ComplexClassTest, ComparisionTest) {
   EXPECT_EQ(cn >= cn2, false);
 }
 
-d TEST(ComplexClassTest, CreationTest) {
+TEST(ComplexClassTest, CreationTest) {
   auto cn = cmplx::utils::ComplexNumber::constructFromString("5.1 + 7.4i");
   auto cn2 = cmplx::utils::ComplexNumber::constructFromString("53 - 10i");
   auto cn3 = cmplx::utils::ComplexNumber::constructFromString("-12 + 40i");
