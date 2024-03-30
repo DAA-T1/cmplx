@@ -19,25 +19,28 @@ public:
   double Imaginary;
 
   ComplexNumber(double Real, double Imaginary) : Real(Real), Imaginary(Imaginary) {}
+  ComplexNumber() : Real(0), Imaginary(0) {}
 
-  bool operator<=(const ComplexNumber &Other) {
-	return (this->getL2Norm() <= Other.getL2Norm());
+  bool operator<(const ComplexNumber &Other) {
+	if (this == &Other) {
+	  if (this->Real < Other.Real) {
+		return true;
+	  } else if (this->Real == Other.Real) {
+		return (this->Imaginary <= Other.Imaginary);
+	  } else {
+		return false;
+	  }
+	} else {
+	  return (this->getL2Norm() <= Other.getL2Norm());
+	}
   }
 
-  bool operator>=(const ComplexNumber &Other) {
-	return (this->getL2Norm() >= Other.getL2Norm());
+  bool operator>(const ComplexNumber &Other) {
+	return !(*this < Other);
   }
 
   bool operator==(const ComplexNumber &Other) {
 	return ((this->Real == Other.Real) && (this->Imaginary == Other.Imaginary));
-  }
-
-  bool operator>(const ComplexNumber &Other) {
-	return (this->getL2Norm() > Other.getL2Norm());
-  }
-
-  bool operator<(const ComplexNumber &Other) {
-	return (this->getL2Norm() < Other.getL2Norm());
   }
 
   bool operator!=(const ComplexNumber &Other) {
@@ -50,17 +53,14 @@ public:
 	return sqrt(this->Real * this->Real + this->Imaginary * this->Imaginary);
   }
 
-  static ComplexNumber constructFromString(const std::string Text) {
-	double RealIn, ImaginaryIn;
+  ComplexNumber(const std::string Text) {
 
 	if (Text.find('+') == std::string::npos) {
-	  sscanf(Text.c_str(), "%lf - %lfi", &RealIn, &ImaginaryIn);
-	  ImaginaryIn *= -1;
+	  sscanf(Text.c_str(), "%lf - %lfi", &(this->Real), &(this->Imaginary));
+	  this->Imaginary *= -1;
 	} else {
-	  sscanf(Text.c_str(), "%lf + %lfi", &RealIn, &ImaginaryIn);
+	  sscanf(Text.c_str(), "%lf + %lfi", &(this->Real), &(this->Imaginary));
 	}
-
-	return ComplexNumber(RealIn, ImaginaryIn);
   }
 };
 
