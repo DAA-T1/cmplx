@@ -14,4 +14,14 @@ TEST(ComplexClassTest, BasicTest) {
   auto cn = new cmplx::utils::ComplexNumber(5.0, 7.0);
 
   EXPECT_EQ(cn->Real, 5.0);
+  EXPECT_EQ(cn->Imaginary, 5.0);
+}
+
+TEST(ComplexClassTest, ComparisionTest) {
+  auto cn = new cmplx::utils::ComplexNumber(5.0, 7.0);
+  auto cn2 = new cmplx::utils::ComplexNumber(3.0, 7.0);
+
+  EXPECT_EQ(cn <= cn2, true);
+  EXPECT_EQ(cn == cn2, false);
+  EXPECT_EQ(cn >= cn2, false);
 }

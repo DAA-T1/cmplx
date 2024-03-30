@@ -8,7 +8,12 @@
 #include <iostream>
 
 namespace cmplx::utils {
-void printHello() {
-  std::cout << "Hello!" << std::endl;
-}
+
+  template <typename T>
+  void printArray(T *arr, int size) {
+    for (int i = 0; i < size; i++) {
+      std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+  }
 }// namespace cmplx::heapsort

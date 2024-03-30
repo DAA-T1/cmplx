@@ -6,7 +6,9 @@
 //===------------------------------------------------------------------------------===//
 
 #pragma once
-#include <stdio.h>
+#include <cmath>
+#include <cstdio>
+#include <iostream>
 
 namespace cmplx::utils {
 
@@ -17,8 +19,34 @@ public:
 
   ComplexNumber(double Real, double Imaginary) : Real(Real), Imaginary(Imaginary) {}
 
-  ComplexNumber operator<=(const ComplexNumber &Other) {
-	return ((this->Real * this->Real + this->Imaginary * this->Imaginary) <= (Other.Real * Other.Real + Other.Imaginary * Other.Imaginary) ? *this : Other);
+  bool operator<=(const ComplexNumber &Other) {
+	return (this->getL2Norm() <= Other.getL2Norm());
+  }
+
+  bool operator>=(const ComplexNumber &Other) {
+	return (this->getL2Norm() >= Other.getL2Norm());
+  }
+
+  bool operator==(const ComplexNumber &Other) {
+	return ((this->Real == Other.Real) && (this->Imaginary == Other.Imaginary));
+  }
+
+  bool operator>(const ComplexNumber &Other) {
+	return (this->getL2Norm() > Other.getL2Norm());
+  }
+
+  bool operator<(const ComplexNumber &Other) {
+	return (this->getL2Norm() < Other.getL2Norm());
+  }
+
+  bool operator!=(const ComplexNumber &Other) {
+	return ((this->Real != Other.Real) || (this->Imaginary != Other.Imaginary));
+  }
+
+  friend std::ostream &operator<<(std::ostream &os, const ComplexNumber &toprint);
+
+  inline double getL2Norm() const {
+	return sqrt(this->Real * this->Real + this->Imaginary * this->Imaginary);
   }
 
   ComplexNumber constructFromText(const char *Text) {
@@ -27,4 +55,9 @@ public:
 	return ComplexNumber(RealIn, ImaginaryIn);
   }
 };
+
+std::ostream &operator<<(std::ostream &os, const ComplexNumber &toprint) {
+  os << toprint.Real << '+' << toprint.Imaginary << 'i';
+  return os;
+}
 }// namespace cmplx::utils
