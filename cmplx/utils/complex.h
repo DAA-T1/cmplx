@@ -9,6 +9,7 @@
 #include <cmath>
 #include <cstdio>
 #include <iostream>
+#include <string>
 
 namespace cmplx::utils {
 
@@ -49,9 +50,16 @@ public:
 	return sqrt(this->Real * this->Real + this->Imaginary * this->Imaginary);
   }
 
-  ComplexNumber constructFromText(const char *Text) {
+  static ComplexNumber constructFromString(const std::string Text) {
 	double RealIn, ImaginaryIn;
-	sscanf(Text, "%lf %lf", &RealIn, &ImaginaryIn);
+
+	if (Text.find('+') == std::string::npos) {
+	  sscanf(Text.c_str(), "%lf - %lfi", &RealIn, &ImaginaryIn);
+	  ImaginaryIn *= -1;
+	} else {
+	  sscanf(Text.c_str(), "%lf + %lfi", &RealIn, &ImaginaryIn);
+	}
+
 	return ComplexNumber(RealIn, ImaginaryIn);
   }
 };

@@ -10,10 +10,10 @@
 namespace cmplx::utils {
 
   template <typename T>
-  void printArray(T *arr, int size) {
-    for (int i = 0; i < size; i++) {
-      std::cout << arr[i] << " ";
-    }
-    std::cout << std::endl;
+  void swap(T &a, T &b) {
+    T temp = a;
+    a = b;
+    b = temp;
   }
+  
 }// namespace cmplx::heapsort
