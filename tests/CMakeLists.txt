@@ -5,6 +5,7 @@ add_executable(
 target_link_libraries(
         heap_test
         GTest::gtest_main
+        GTest::gmock_main
         heapsort
 )
 
@@ -15,6 +16,7 @@ add_executable(
 target_link_libraries(
         heapsort_test
         GTest::gtest_main
+        GTest::gmock_main
         heapsort
 )
 
