@@ -20,6 +20,17 @@ target_link_libraries(
         heapsort
 )
 
+add_executable(
+        complex_class_test
+        complex_class_test.cpp
+)
+target_link_libraries(
+        complex_class_test
+        GTest::gtest_main
+        GTest::gmock_main
+        utils
+)
+
 include(GoogleTest)
 gtest_discover_tests(heap_test)
 gtest_discover_tests(heapsort_test)
