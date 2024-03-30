@@ -10,7 +10,6 @@
 #include <iostream>
 
 namespace cmplx::heapsort {
-void printHello();
 template<typename T>
 void sort(T *Arr, int Length) {
   auto *Heap = new cmplx::heapsort::MaxHeap(Arr, Length);
