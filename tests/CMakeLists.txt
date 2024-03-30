@@ -21,6 +21,17 @@ target_link_libraries(
 )
 
 add_executable(
+        quicksort_test
+        quicksort_test.cpp
+)
+target_link_libraries(
+        quicksort_test
+        GTest::gtest_main
+        GTest::gmock_main
+        quicksort
+)
+
+add_executable(
         complex_class_test
         complex_class_test.cpp
 )
@@ -32,5 +43,7 @@ target_link_libraries(
 )
 
 include(GoogleTest)
+
+gtest_discover_tests(quicksort_test)
 gtest_discover_tests(heap_test)
 gtest_discover_tests(heapsort_test)

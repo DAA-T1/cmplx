@@ -28,13 +28,13 @@ public:
   }
 
   inline int parent(int Idx) {
-	return Idx >> 1;
+	return (Idx - 1) >> 1;
   }
   inline int left(int Idx) {
-	return Idx << 1;
+	return (Idx << 1) + 1;
   };
   inline int right(int Idx) {
-	return (Idx << 1) + 1;
+	return (Idx << 1) + 2;
   };
 
   void maxHeapify(int Root) {
@@ -57,15 +57,15 @@ public:
   void buildMaxHeap() {
 	// 1 less than length since first element is discarded
 	this->HeapSize = this->Length - 1;
-	for (int Idx = floor(this->Length / 2); Idx > 0; Idx--)
+	for (int Idx = parent(this->Length - 1); Idx >= 0; Idx--)
 	  this->maxHeapify(Idx);
   }
 
   void heapSort() {
-	for (int Idx = this->Length - 1; Idx >= 2; Idx--) {
-	  this->exchange(1, Idx);
+	for (int Idx = this->Length - 1; Idx >= 1; Idx--) {
+	  this->exchange(0, Idx);
 	  this->HeapSize--;
-	  this->maxHeapify(1);
+	  this->maxHeapify(0);
 	}
   }
 

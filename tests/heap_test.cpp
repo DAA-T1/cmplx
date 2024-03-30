@@ -14,13 +14,13 @@ TEST(HeapTest, TreeRelationships) {
   int Nums[] = {0, 1, 2, 3, 4, 5, 6};
   auto *Heap = new cmplx::heapsort::MaxHeap(Nums, 7);
 
-  EXPECT_EQ(Heap->parent(2), 1);
+  EXPECT_EQ(Heap->parent(2), 0);
   EXPECT_EQ(Heap->parent(3), 1);
-  EXPECT_EQ(Heap->right(1), 3);
-  EXPECT_EQ(Heap->left(1), 2);
-  EXPECT_EQ(Heap->parent(10), 5);
-  EXPECT_EQ(Heap->right(3), 7);
-  EXPECT_EQ(Heap->left(3), 6);
+  EXPECT_EQ(Heap->right(1), 4);
+  EXPECT_EQ(Heap->left(1), 3);
+  EXPECT_EQ(Heap->parent(10), 4);
+  EXPECT_EQ(Heap->right(3), 8);
+  EXPECT_EQ(Heap->left(3), 7);
 }
 
 // Test for max-heapify.
@@ -29,18 +29,18 @@ TEST(HeapTest, MaxHeapifyTest) {
   auto *Heap = new cmplx::heapsort::MaxHeap(Nums, 4);
   // setting the raw manually since heap property is established in the constructor.
   Heap->HeapArr = Nums;
-  Heap->maxHeapify(1);
+  Heap->maxHeapify(0);
 
-  ASSERT_THAT(Nums, testing::ElementsAre(0, 3, 2, 1));
+  ASSERT_THAT(Nums, testing::ElementsAre(3, 1, 2, 0));
 }
 
 // Test for buildHeap.
 TEST(HeapTest, BuildMaxHeapTest) {
-  int Nums[] = {0, 1, 2, 3};
+  int Nums[] = {0, 3, 2, 1};
   auto *Heap = new cmplx::heapsort::MaxHeap(Nums, 4);
   Heap->buildMaxHeap();
 
-  ASSERT_THAT(Nums, testing::ElementsAre(0, 3, 2, 1));
+  ASSERT_THAT(Nums, testing::ElementsAre(3, 1, 2, 0));
 }
 
 // Test for HeapSort.
