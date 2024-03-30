@@ -6,11 +6,17 @@
 //===--------------------------------------------------------------------===//
 
 // #include "readfile.h"
+#include "cmplx/superarr/superarr.h"
+#include <cmplx/readfile/readfile.h>
 #include <fstream>
 #include <iostream>
-#include <cmplx/superarr/superarr.h>
-#include <string> 
+#include <string>
 namespace cmplx::readfile {
+
+int stringToInt(std::string str) {
+  int num = 0;
+  
+}
 cmplx::superarr::SuperArray<int> readIntArray(std::string fileName) {
   std::string line;
   std::ifstream myfile(fileName);
@@ -50,9 +56,3 @@ cmplx::superarr::SuperArray<int> readIntArray(std::string fileName) {
   return array;
 }
 } // namespace cmplx::readfile
-
-int main() {
-    auto array = cmplx::readfile::readIntArray("file.txt");
-    std::cout << array << std::endl;
-    return 0;
-}

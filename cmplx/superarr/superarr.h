@@ -6,8 +6,7 @@
 //===-----------------------------------------------------------------===//
 
 #pragma once
-#include <initializer_list>
-#include <iosfwd>
+#include <iostream>
 
 namespace cmplx::superarr {
 template <typename T> class SuperArray {
@@ -15,12 +14,35 @@ template <typename T> class SuperArray {
   T *arr;
 
 public:
-  SuperArray(std::initializer_list<T>);
-  SuperArray(int, T);
-  SuperArray(int);
-  int size();
-  T &operator[](int);
-  ~SuperArray();
+  SuperArray(std::initializer_list<T> init_list) {
+	arr = new T[n];
+	T *ptr = arr;
+	for (auto &c : init_list) {
+	  *ptr++ = c;
+	}
+  }
+  SuperArray(int size, T elem) {
+	n = size;
+	arr = new T[n];
+	for (int i = 0; i < n; i++) {
+	  arr[i] = elem;
+	}
+  }
+  SuperArray(int size) {
+	n = size;
+	arr = new T[n]();
+  }
+  int size() { return n; }
+
+  T &operator[](int ind) {
+	if (ind >= n) {
+	  std::cout << "Out of bounds access." << std::endl;
+	  exit(0);
+	}
+	return arr[ind];
+  }
+
+  ~SuperArray() { delete[] arr; }
   friend std::ostream &operator<<(std::ostream &out, SuperArray<T> &c) {
     for (int i = 0; i < c.size(); i++) {
       out << c[i] << " ";

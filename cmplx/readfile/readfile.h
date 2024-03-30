@@ -6,9 +6,11 @@
 //===-----------------------------------------------------------------===//
 
 #pragma once
-#include <iosfwd>
+#include "cmplx/superarr/superarr.h"
+#include <string>
 
 namespace cmplx::readfile {
+    cmplx::superarr::SuperArray<int> readIntArray(std::string fileName);
 // cmplx::superarr::SuperArray<int> readIntArray(string);
 // cmplx::superarr::SuperArray<Complex>
 } // namespace cmplx::readfile
