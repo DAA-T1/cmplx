@@ -19,9 +19,6 @@ public:
   int HeapSize;
 
   MaxHeap(T *RawArr, int Length) {
-	// ensuring that the first element is blank
-	// need to have an array of pointers to complex numbers
-	assert(RawArr[0] == 0);
 	this->HeapArr = RawArr;
 	this->Length = Length;
 	this->buildMaxHeap();
