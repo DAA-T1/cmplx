@@ -1,4 +1,4 @@
-//===-- cmplx/superarr/superarr.h - Super Array Definition --------------===//
+//===-- cmplx/superarr/superarr.h - Super Array Definition (and Implementation)--------------===//
 ///
 /// \file
 /// This file contains the declaration of the Super Array data structure.
@@ -10,44 +10,44 @@
 
 namespace cmplx::superarr {
 template <typename T> class SuperArray {
-  int n;
-  T *arr;
+  int N;
+  T *Arr;
 
 public:
-  SuperArray(std::initializer_list<T> init_list) {
-	arr = new T[n];
-	T *ptr = arr;
-	for (auto &c : init_list) {
-	  *ptr++ = c;
+  SuperArray(std::initializer_list<T> InitList) {
+	Arr = new T[N];
+	T *Ptr = Arr;
+	for (auto &c : InitList) {
+	  *Ptr++ = c;
 	}
   }
-  SuperArray(int size, T elem) {
-	n = size;
-	arr = new T[n];
-	for (int i = 0; i < n; i++) {
-	  arr[i] = elem;
+  SuperArray(int Size, T Elem) {
+	N = Size;
+	Arr = new T[N];
+	for (int i = 0; i < N; i++) {
+	  Arr[i] = Elem;
 	}
   }
-  SuperArray(int size) {
-	n = size;
-	arr = new T[n]();
+  SuperArray(int Size) {
+	N = Size;
+	Arr = new T[N]();
   }
-  int size() { return n; }
+  int size() { return N; }
 
-  T &operator[](int ind) {
-	if (ind >= n) {
+  T &operator[](int Ind) {
+	if (Ind >= N) {
 	  std::cout << "Out of bounds access." << std::endl;
 	  exit(0);
 	}
-	return arr[ind];
+	return Arr[Ind];
   }
 
-  ~SuperArray() { delete[] arr; }
-  friend std::ostream &operator<<(std::ostream &out, SuperArray<T> &c) {
-    for (int i = 0; i < c.size(); i++) {
-      out << c[i] << " ";
+  ~SuperArray() { delete[] Arr; }
+  friend std::ostream &operator<<(std::ostream &Out, SuperArray<T> &C) {
+    for (int i = 0; i < C.size(); i++) {
+      Out << C[i] << " ";
     }
-    return out;
+    return Out;
   }
 };
 } // namespace cmplx::superarr
