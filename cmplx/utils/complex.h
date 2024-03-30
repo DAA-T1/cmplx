@@ -39,6 +39,14 @@ public:
 	return !(*this < Other);
   }
 
+  bool operator>= (const ComplexNumber &Other) {
+    return (*this > Other) || (*this == Other);
+  }
+
+  bool operator<= (const ComplexNumber &Other) {
+    return (*this < Other) || (*this == Other);
+  }
+
   bool operator==(const ComplexNumber &Other) {
 	return ((this->Real == Other.Real) && (this->Imaginary == Other.Imaginary));
   }
