@@ -24,18 +24,18 @@ int partition(std::vector<T> &Vec, int Left, int Right) {
   int J = Right + 1;
 
   while (true) {
-    do {
-      I++;
-    } while (Vec[I] < Pivot);
+	do {
+	  I++;
+	} while (Vec[I] < Pivot);
 
-    do {
-      J--;
-    } while (Vec[J] > Pivot);
+	do {
+	  J--;
+	} while (Vec[J] > Pivot);
 
-    if (I >= J) {
-      return J;
-    }
-    swap(&Vec[I], &Vec[J]);
+	if (I >= J) {
+	  return J;
+	}
+	swap(&Vec[I], &Vec[J]);
   }
   // unreachable
 }
@@ -43,7 +43,7 @@ int partition(std::vector<T> &Vec, int Left, int Right) {
 template<typename T>
 void qSort(std::vector<T> &Vec, int Left, int Right) {
   if (Left >= Right) {
-    return;
+	return;
   }
   int Middle = partition(Vec, Left, Right);
   qSort(Vec, Left, Middle);
