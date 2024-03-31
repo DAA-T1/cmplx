@@ -46,8 +46,8 @@ parser.add_argument(
 )
 
 # important: actually putting the values in the range (e308), will make the RNG just print inf or -inf
-DOUBLE_MIN = -1.7976931348623157e307
-DOUBLE_MAX = 1.7976931348623157e307
+DOUBLE_MIN = -1.5e100
+DOUBLE_MAX = 1.5e100
 
 
 def rand_double():

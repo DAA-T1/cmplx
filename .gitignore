@@ -60,3 +60,4 @@ test/test_runner
 /cmake-build-release
 testfiles/dyn_testfile.txt
 benchmarker/output.txt
+benchmarker/output**
