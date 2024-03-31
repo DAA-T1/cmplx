@@ -11,7 +11,8 @@
 #include <iostream>
 #include <string>
 
-namespace cmplx::utils {
+namespace cmplx {
+namespace utils {
 
 class ComplexNumber {
 public:
@@ -20,6 +21,15 @@ public:
 
   ComplexNumber(double Real, double Imaginary) : Real(Real), Imaginary(Imaginary) {}
   ComplexNumber() : Real(0), Imaginary(0) {}
+  ComplexNumber(const std::string Text) {
+
+	if (Text.find('+') == std::string::npos) {
+	  sscanf(Text.c_str(), "%lf - %lfi", &(Real), &(Imaginary));
+	  Imaginary *= -1;
+	} else {
+	  sscanf(Text.c_str(), "%lf + %lfi", &(Real), &(Imaginary));
+	}
+  }
 
   bool operator<(const ComplexNumber &Other) {
 	if (*this == Other) {
@@ -35,12 +45,12 @@ public:
 	return !(*this < Other);
   }
 
-  bool operator>= (const ComplexNumber &Other) {
-    return (*this > Other) || (*this == Other);
+  bool operator>=(const ComplexNumber &Other) {
+	return (*this > Other) || (*this == Other);
   }
 
-  bool operator<= (const ComplexNumber &Other) {
-    return (*this < Other) || (*this == Other);
+  bool operator<=(const ComplexNumber &Other) {
+	return (*this < Other) || (*this == Other);
   }
 
   bool operator==(const ComplexNumber &Other) {
@@ -56,21 +66,11 @@ public:
   inline double getL2Norm() const {
 	return sqrt(this->Real * this->Real + this->Imaginary * this->Imaginary);
   }
-
-  ComplexNumber(const std::string Text) {
-
-	if (Text.find('+') == std::string::npos) {
-	  sscanf(Text.c_str(), "%lf - %lfi", &(Real), &(Imaginary));
-	  Imaginary *= -1;
-	} else {
-	  sscanf(Text.c_str(), "%lf + %lfi", &(Real), &(Imaginary));
-	}
-  }
-
 };
 
 std::ostream &operator<<(std::ostream &os, const ComplexNumber &toprint) {
   os << toprint.Real << '+' << toprint.Imaginary << 'i';
   return os;
 }
-}// namespace cmplx::utils
+}// namespace utils
+}// namespace cmplx
