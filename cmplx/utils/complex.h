@@ -11,7 +11,8 @@
 #include <iostream>
 #include <string>
 
-namespace cmplx::utils {
+namespace cmplx {
+namespace utils {
 
 class ComplexNumber {
 public:
@@ -71,4 +72,5 @@ std::ostream &operator<<(std::ostream &os, const ComplexNumber &toprint) {
   os << toprint.Real << '+' << toprint.Imaginary << 'i';
   return os;
 }
-}// namespace cmplx::utils
+}// namespace utils
+}// namespace cmplx

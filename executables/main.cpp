@@ -11,6 +11,8 @@
 #include <iostream>
 #include <string.h>
 
+using double_time = std::chrono::time_point<std::chrono::high_resolution_clock>;
+
 int main(int Argc, char *Argv[]) {
   if (Argc < 2) {
 	std::cerr << "Usage: " << Argv[0] << " --heap/--quick --time --file <filename>" << std::endl;
@@ -34,8 +36,9 @@ int main(int Argc, char *Argv[]) {
   int N;
   cmplx::readfile::readFromFile(FileName, &Arr, N);
 
-  std::chrono::time_point<std::chrono::steady_clock> Start;
-  std::chrono::time_point<std::chrono::steady_clock> Stop;
+  double_time Start;
+  double_time Stop;
+
   if (Sort == "heap") {
 	Start = std::chrono::high_resolution_clock::now();
 	cmplx::heapsort::sort(Arr, N);
