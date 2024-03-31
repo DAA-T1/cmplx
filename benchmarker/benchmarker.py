@@ -40,8 +40,13 @@ parser.add_argument(
 
 parser.add_argument("--size", type=int, help="Size of the input data", default=100)
 
-DOUBLE_MIN = -1.79769e308
-DOUBLE_MAX = 1.79769e308
+parser.add_argument(
+    "--seed", type=int, help="Seed for random number generator", default=0
+)
+
+# important: actually putting the values in the range (e308), will make the RNG just print inf or -inf
+DOUBLE_MIN = -1.7976931348623157e307
+DOUBLE_MAX = 1.7976931348623157e307
 
 
 def rand_double():
@@ -51,8 +56,8 @@ def rand_double():
 def generate_data(filen, size):
     with open(filen, "w") as f:
         for _ in range(size - 1):
-            f.write(f"{rand_double()} {rand_double():+f}i, ")
-        f.write(f"{rand_double()} {rand_double():+f}i")
+            f.write(f"{rand_double():10.2f} {rand_double():+10.2f}i, ")
+        f.write(f"{rand_double():10.2f} {rand_double():+10.2f}i")
 
 
 if __name__ == "__main__":
@@ -89,6 +94,9 @@ if __name__ == "__main__":
         command = f"{path_to_main} --{args.algorithm.lower()} --time --file {filename}"
 
     arr = []
+
+    print(f"Seed: {args.seed}")
+    random.seed(args.seed)
 
     for _ in range(args.repeat):
         if args.random:
