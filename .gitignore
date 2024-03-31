@@ -46,7 +46,8 @@ include/divisible/*
 
 ## Local
 
-.idea/
+.idea/**
+!.idea/runConfigurations/**
 .vscode/
 
 build/**/*
