@@ -57,3 +57,5 @@ lib/*
 bin/*
 test/test_runner
 .cache/
+/cmake-build-release
+testfiles/dyn_testfile.txt
