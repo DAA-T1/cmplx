@@ -4,6 +4,7 @@ import argparse
 import subprocess
 import random
 import statistics
+from tqdm import tqdm
 
 VERSION = "0.0.1"
 
@@ -98,7 +99,7 @@ if __name__ == "__main__":
     print(f"Seed: {args.seed}")
     random.seed(args.seed)
 
-    for _ in range(args.repeat):
+    for _ in tqdm(range(args.repeat)):
         if args.random:
             generate_data(filename, args.size)
 
