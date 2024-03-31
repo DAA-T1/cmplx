@@ -15,17 +15,17 @@ using double_time = std::chrono::time_point<std::chrono::high_resolution_clock>;
 
 int main(int Argc, char *Argv[]) {
   if (Argc < 2) {
-	std::cerr << "Usage: " << Argv[0] << " --heap/--quick --time --file <filename>" << std::endl;
+	std::cerr << "Usage: " << Argv[0] << " (--heap|--quick|--both) [--time] (--file <filename>)" << std::endl;
 	exit(1);
   }
-  std::string Sort;
+  int SortFlag = 0;
   bool Time = false;
   std::string FileName;
   for (int I = 1; I < Argc; I++) {
 	if (!strcmp(Argv[I], "--heap")) {
-	  Sort = "heap";
+	  SortFlag = 0;
 	} else if (!strcmp(Argv[I], "--quick")) {
-	  Sort = "quick";
+	  SortFlag = 1;
 	} else if (!strcmp(Argv[I], "--time")) {
 	  Time = true;
 	} else if (!strcmp(Argv[I], "--file")) {
@@ -39,11 +39,11 @@ int main(int Argc, char *Argv[]) {
   double_time Start;
   double_time Stop;
 
-  if (Sort == "heap") {
+  if (SortFlag == 0) {
 	Start = std::chrono::high_resolution_clock::now();
 	cmplx::heapsort::sort(Arr, N);
 	Stop = std::chrono::high_resolution_clock::now();
-  } else if (Sort == "quick") {
+  } else {
 	Start = std::chrono::high_resolution_clock::now();
 	cmplx::quicksort::sort(Arr, N);
 	Stop = std::chrono::high_resolution_clock::now();
