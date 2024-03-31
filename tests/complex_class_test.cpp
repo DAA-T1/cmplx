@@ -12,8 +12,8 @@
 TEST(ComplexClassTest, BasicTest) {
   auto *Cn = new cmplx::utils::ComplexNumber(5.0, 7.0);
 
-  EXPECT_EQ(Cn->Real, 5.0);
-  EXPECT_EQ(Cn->Imaginary, 7.0);
+  EXPECT_EQ(Cn->getReal(), 5.0);
+  EXPECT_EQ(Cn->getImaginary(), 7.0);
 }
 
 TEST(ComplexClassTest, ComparisionTest) {
@@ -33,14 +33,14 @@ TEST(ComplexClassTest, CreationTest) {
   auto Cn4 = cmplx::utils::ComplexNumber("-53.3 - 45930.30i");
   auto Cn5 = cmplx::utils::ComplexNumber("-53.3 +40.353i");
 
-  EXPECT_EQ(Cn.Real, 5.1);
-  EXPECT_EQ(Cn.Imaginary, 7.4);
-  EXPECT_EQ(Cn2.Real, 53.0);
-  EXPECT_EQ(Cn2.Imaginary, -10.0);
-  EXPECT_EQ(Cn3.Real, -12.0);
-  EXPECT_EQ(Cn3.Imaginary, 40.0);
-  EXPECT_EQ(Cn4.Real, -53.3);
-  EXPECT_EQ(Cn4.Imaginary, -45930.30);
-  EXPECT_EQ(Cn5.Real, -53.3);
-  EXPECT_EQ(Cn5.Imaginary, 40.353);
+  EXPECT_EQ(Cn.getReal(), 5.1);
+  EXPECT_EQ(Cn.getImaginary(), 7.4);
+  EXPECT_EQ(Cn2.getReal(), 53.0);
+  EXPECT_EQ(Cn2.getImaginary(), -10.0);
+  EXPECT_EQ(Cn3.getReal(), -12.0);
+  EXPECT_EQ(Cn3.getImaginary(), 40.0);
+  EXPECT_EQ(Cn4.getReal(), -53.3);
+  EXPECT_EQ(Cn4.getImaginary(), -45930.30);
+  EXPECT_EQ(Cn5.getReal(), -53.3);
+  EXPECT_EQ(Cn5.getImaginary(), 40.353);
 }

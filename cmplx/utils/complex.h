@@ -37,6 +37,14 @@ public:
 	L2Norm = this->getL2Norm();
   }
 
+  double getReal() const {
+	return Real;
+  }
+
+  double getImaginary() const {
+	return Imaginary;
+  }
+
   bool operator<(const ComplexNumber &Other) {
 	if (*this == Other) {
 	  if (this->Real < Other.Real) {
