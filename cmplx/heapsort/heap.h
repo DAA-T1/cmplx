@@ -7,7 +7,6 @@
 
 #pragma once
 
-#include <cassert>
 #include <math.h>
 
 namespace cmplx::heapsort {
@@ -65,9 +64,10 @@ public:
 	  this->maxHeapify(0);
 	}
   }
+  // todo: create a destructor for this class.
 
 private:
-  // @todo write test case for this function
+  // todo: write test case for this function
   void exchange(int A, int B) {
 	auto Temp = this->HeapArr[A];
 	this->HeapArr[A] = this->HeapArr[B];

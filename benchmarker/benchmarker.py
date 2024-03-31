@@ -21,6 +21,10 @@ parser.add_argument(
     help="Specific input data",
 )
 
+# TODO: Add a flag to specify number of times the benchmark should run
+# TODO: Add a flag to know which algorithm to run (heap or quick)
+# TODO: Add a flag to specify the output file with raw data if required
+
 parser.add_argument("--size", type=int, help="Size of the input data", default=100)
 
 DOUBLE_MIN = -1000

@@ -20,7 +20,7 @@ int main(int Argc, char *Argv[]) {
   }
   int SortFlag = -1;
   bool Time = false;
-  bool PrintArray = false;
+  bool ToPrintArray = false;
   std::string FileName;
   for (int I = 1; I < Argc; I++) {
 	if (!strcmp(Argv[I], "--heap")) {
@@ -32,7 +32,7 @@ int main(int Argc, char *Argv[]) {
 	} else if (!strcmp(Argv[I], "--file")) {
 	  FileName = Argv[++I];
 	} else if (!strcmp(Argv[I], "--print")) {
-	  PrintArray = true;
+	  ToPrintArray = true;
 	}
   }
   cmplx::utils::ComplexNumber *Arr;
@@ -56,7 +56,7 @@ int main(int Argc, char *Argv[]) {
 
   auto Duration = std::chrono::duration_cast<std::chrono::nanoseconds>(Stop - Start);
 
-  if (PrintArray) {
+  if (ToPrintArray) {
 	std::cout << "Sorted Array: ";
 	cmplx::utils::printArray(Arr, N);
   }

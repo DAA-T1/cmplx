@@ -6,14 +6,17 @@
 //===-----------------------------------------------------------------===//
 
 #pragma once
+#include <cmplx/utils/utils.h>
 
 namespace cmplx::quicksort {
+
 template<typename T>
-void swap(T *A, T *B) {
-  auto Temp = *A;
-  *A = *B;
-  *B = Temp;
+void swap(T &A, T &B) {
+  T Temp = A;
+  A = B;
+  B = Temp;
 }
+
 template<typename T>
 int partition(T *Arr, int Left, int Right) {
   T Pivot = Arr[Left];
@@ -27,27 +30,12 @@ int partition(T *Arr, int Left, int Right) {
 	  J--;
 	}
 	if (I < J) {
-	  swap(&Arr[I], &Arr[J]);
+	  swap(Arr[I], Arr[J]);
 	}
   }
-  swap(&Arr[J], &Arr[Left]);
+  swap(Arr[J], Arr[Left]);
   return J;
 }
-
-//template<typename T>
-//int partition(T *Vec, int Left, int Right) {
-//  T Pivot = Vec[Right];
-//  int I = Left - 1;
-//
-//  for (int J = Left; J < Right; J++) {
-//	if (Vec[J] <= Pivot) {
-//	  I++;
-//	  swap(&Vec[I], &Vec[J]);
-//	}
-//  }
-//  swap(&Vec[I + 1], &Vec[Right]);
-//  return I + 1;
-//}
 
 template<typename T>
 void qSort(T *Arr, int Left, int Right) {
