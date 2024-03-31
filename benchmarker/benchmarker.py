@@ -3,6 +3,7 @@ import sys
 import argparse
 import subprocess
 import random
+import statistics
 
 VERSION = "0.0.1"
 
@@ -21,18 +22,30 @@ parser.add_argument(
     help="Specific input data",
 )
 
-# TODO: Add a flag to specify number of times the benchmark should run
-# TODO: Add a flag to know which algorithm to run (heap or quick)
-# TODO: Add a flag to specify the output file with raw data if required
+parser.add_argument(
+    "--repeat", type=int, help="Number of times to repeat the benchmark", default=1
+)
+parser.add_argument(
+    "--algorithm",
+    type=str,
+    help="Algorithm to run",
+    default=None,
+    choices=["heap", "quick"],
+)
+parser.add_argument(
+    "--output-raw",
+    type=str,
+    help="Output raw data",
+)
 
 parser.add_argument("--size", type=int, help="Size of the input data", default=100)
 
-DOUBLE_MIN = -1000
-DOUBLE_MAX = 1000
+DOUBLE_MIN = -1.79769e308
+DOUBLE_MAX = 1.79769e308
 
 
 def rand_double():
-    random.uniform(DOUBLE_MIN, DOUBLE_MAX)
+    return random.uniform(DOUBLE_MIN, DOUBLE_MAX)
 
 
 def generate_data(filen, size):
@@ -48,8 +61,6 @@ if __name__ == "__main__":
         print("Please specify either --random or --specific.")
         sys.exit(1)
 
-    print(f"Benchmarker v{VERSION}")
-
     path_to_main = os.path.join(
         os.path.dirname(__file__),
         "..",
@@ -63,17 +74,41 @@ if __name__ == "__main__":
         sys.exit(1)
 
     base_testfile_folder = os.path.join(os.path.dirname(__file__), "..", "testfiles")
-    filename = os.path.join(base_testfile_folder, "dyn_testfile.txt")
 
     if args.specific:
-        print("Using specific file. Ignoring --random and --size.")
         filename = os.path.join(base_testfile_folder, args.specific)
     else:
-        print(f"Using random data. The random data size is {args.size}.")
-        generate_data(filename, args.size)
+        print(f"Size: {args.size}")
+        filename = os.path.join(base_testfile_folder, "dyn_testfile.txt")
 
-    command = f"{path_to_main} --heap --time --file {filename}"
+    if args.algorithm is None:
+        print("Please specify an algorithm.")
+        sys.exit(1)
+    else:
+        print(f"Algorithm: {args.algorithm}")
+        command = f"{path_to_main} --{args.algorithm.lower()} --time --file {filename}"
 
-    output = subprocess.run(command, shell=True, capture_output=True, text=True)
-    time_taken_nanoseconds = output.stdout.split("\n")[0].split(" ")[-1].strip("ns")
-    print(time_taken_nanoseconds)
+    arr = []
+
+    for _ in range(args.repeat):
+        if args.random:
+            generate_data(filename, args.size)
+
+        output = subprocess.run(command, shell=True, capture_output=True, text=True)
+        time_taken_nanoseconds = output.stdout.split("\n")[0].split(" ")[-1].strip("ns")
+        arr += [int(time_taken_nanoseconds)]
+
+    if args.output_raw:
+        with open(args.output_raw, "w") as f:
+            str_arr = map(str, arr)
+            f.write("\n".join(str_arr) + "\n")
+
+    avg = statistics.mean(arr)
+    maxval = max(arr)
+    minval = min(arr)
+    std_dev = statistics.stdev(arr)
+    print("=" * 80)
+    print(f"Avg: {round(avg, 2):10.2f}ns")
+    print(f"Max: {maxval:10.2f}ns")
+    print(f"Min: {minval:10.2f}ns")
+    print(f"Std: {round(std_dev, 2):10.2f}ns")
