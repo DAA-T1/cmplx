@@ -11,7 +11,7 @@
 #include <iostream>
 #include <string.h>
 
-using double_time = std::chrono::time_point<std::chrono::high_resolution_clock, std::chrono::duration<double>>;
+using double_time = std::chrono::time_point<std::chrono::high_resolution_clock>;
 
 int main(int Argc, char *Argv[]) {
   if (Argc < 2) {
@@ -38,6 +38,7 @@ int main(int Argc, char *Argv[]) {
 
   double_time Start;
   double_time Stop;
+
   if (Sort == "heap") {
 	Start = std::chrono::high_resolution_clock::now();
 	cmplx::heapsort::sort(Arr, N);
