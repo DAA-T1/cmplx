@@ -81,14 +81,10 @@ private:
   double Real;
   double Imaginary;
 
-  inline double getL2Norm() const {
-	return sqrt(this->Real * this->Real + this->Imaginary * this->Imaginary);
-  }
+  double getL2Norm() const;
 };
 
-inline std::ostream &operator<<(std::ostream &Os, const ComplexNumber &ToPrint) {
-  Os << std::fixed << std::setprecision(2) << ToPrint.Real << ' ' << std::showpos << std::setw(6) << std::internal << ToPrint.Imaginary << 'i' << std::noshowpos;
-  return Os;
-}
+std::ostream &operator<<(std::ostream &Os, const ComplexNumber &ToPrint);
+
 }// namespace utils
 }// namespace cmplx
