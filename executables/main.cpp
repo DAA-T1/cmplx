@@ -15,11 +15,12 @@ using double_time = std::chrono::time_point<std::chrono::high_resolution_clock>;
 
 int main(int Argc, char *Argv[]) {
   if (Argc < 2) {
-	std::cerr << "Usage: " << Argv[0] << " (--heap|--quick|--both) [--time] (--file <filename>)" << std::endl;
+	std::cerr << "Usage: " << Argv[0] << " (--heap|--quick) [--time] [--print] (--file <filename>)" << std::endl;
 	exit(1);
   }
-  int SortFlag = 0;
+  int SortFlag = -1;
   bool Time = false;
+  bool PrintArray = false;
   std::string FileName;
   for (int I = 1; I < Argc; I++) {
 	if (!strcmp(Argv[I], "--heap")) {
@@ -30,6 +31,8 @@ int main(int Argc, char *Argv[]) {
 	  Time = true;
 	} else if (!strcmp(Argv[I], "--file")) {
 	  FileName = Argv[++I];
+	} else if (!strcmp(Argv[I], "--print")) {
+	  PrintArray = true;
 	}
   }
   cmplx::utils::ComplexNumber *Arr;
@@ -43,19 +46,23 @@ int main(int Argc, char *Argv[]) {
 	Start = std::chrono::high_resolution_clock::now();
 	cmplx::heapsort::sort(Arr, N);
 	Stop = std::chrono::high_resolution_clock::now();
-  } else {
+  } else if (SortFlag == 1) {
 	Start = std::chrono::high_resolution_clock::now();
 	cmplx::quicksort::sort(Arr, N);
 	Stop = std::chrono::high_resolution_clock::now();
+  } else {
+	std::cerr << "Invalid Sort Flag. Which Algorithm to use?" << std::endl;
   }
 
   auto Duration = std::chrono::duration_cast<std::chrono::nanoseconds>(Stop - Start);
 
-  std::cout << "Sorted Array: ";
-  cmplx::utils::printArray(Arr, N);
-  if (Time) {
-	std::cout << "Duration (in nanoseconds): " << Duration.count() << std::endl;
+  if (PrintArray) {
+	std::cout << "Sorted Array: ";
+	cmplx::utils::printArray(Arr, N);
+  }
 
+  if (Time) {
+	std::cout << "Took " << Duration.count() << "ns" << std::endl;
 	delete Arr;
   }
 }
