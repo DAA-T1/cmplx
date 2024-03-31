@@ -11,7 +11,8 @@
 #include <iostream>
 #include <string>
 
-namespace cmplx::utils {
+namespace cmplx {
+namespace utils {
 
 class ComplexNumber {
 public:
@@ -35,12 +36,12 @@ public:
 	return !(*this < Other);
   }
 
-  bool operator>= (const ComplexNumber &Other) {
-    return (*this > Other) || (*this == Other);
+  bool operator>=(const ComplexNumber &Other) {
+	return (*this > Other) || (*this == Other);
   }
 
-  bool operator<= (const ComplexNumber &Other) {
-    return (*this < Other) || (*this == Other);
+  bool operator<=(const ComplexNumber &Other) {
+	return (*this < Other) || (*this == Other);
   }
 
   bool operator==(const ComplexNumber &Other) {
@@ -66,11 +67,11 @@ public:
 	  sscanf(Text.c_str(), "%lf + %lfi", &(Real), &(Imaginary));
 	}
   }
-
 };
 
 std::ostream &operator<<(std::ostream &os, const ComplexNumber &toprint) {
   os << toprint.Real << '+' << toprint.Imaginary << 'i';
   return os;
 }
-}// namespace cmplx::utils
+}// namespace utils
+}// namespace cmplx
