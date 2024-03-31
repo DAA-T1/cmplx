@@ -16,7 +16,7 @@ void readFromFile(std::string FileName, cmplx::utils::ComplexNumber **Arr, int &
 	MyFile.close();
   } else {
 	std::cout << "Unable to open file";
-	std::exit(0);
+	std::exit(1);
   }
   Line += ',';
   int Count = 0;
