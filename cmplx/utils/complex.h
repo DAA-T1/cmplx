@@ -35,12 +35,12 @@ public:
 	return !(*this < Other);
   }
 
-  bool operator>= (const ComplexNumber &Other) {
-    return (*this > Other) || (*this == Other);
+  bool operator>=(const ComplexNumber &Other) {
+	return (*this > Other) || (*this == Other);
   }
 
-  bool operator<= (const ComplexNumber &Other) {
-    return (*this < Other) || (*this == Other);
+  bool operator<=(const ComplexNumber &Other) {
+	return (*this < Other) || (*this == Other);
   }
 
   bool operator==(const ComplexNumber &Other) {

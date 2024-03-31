@@ -14,24 +14,27 @@ TEST(ComplexClassTest, BasicTest) {
   auto cn = new cmplx::utils::ComplexNumber(5.0, 7.0);
 
   EXPECT_EQ(cn->Real, 5.0);
-  EXPECT_EQ(cn->Imaginary, 5.0);
+  EXPECT_EQ(cn->Imaginary, 7.0);
 }
 
 TEST(ComplexClassTest, ComparisionTest) {
   auto cn = new cmplx::utils::ComplexNumber(5.0, 7.0);
   auto cn2 = new cmplx::utils::ComplexNumber(3.0, 7.0);
+  //  auto cn3 = new cmplx::utils::ComplexNumber(3.0, 7.0);
 
   EXPECT_EQ(cn <= cn2, true);
+  EXPECT_EQ(cn < cn2, true);
   EXPECT_EQ(cn == cn2, false);
   EXPECT_EQ(cn >= cn2, false);
+  EXPECT_EQ(cn > cn2, false);
 }
 
 TEST(ComplexClassTest, CreationTest) {
-  auto cn = cmplx::utils::ComplexNumber::constructFromString("5.1 + 7.4i");
-  auto cn2 = cmplx::utils::ComplexNumber::constructFromString("53 - 10i");
-  auto cn3 = cmplx::utils::ComplexNumber::constructFromString("-12 + 40i");
-  auto cn4 = cmplx::utils::ComplexNumber::constructFromString("-53.3 - 45930.30i");
-  auto cn5 = cmplx::utils::ComplexNumber::constructFromString("-53.3 +40.353i");
+  auto cn = cmplx::utils::ComplexNumber("5.1 + 7.4i");
+  auto cn2 = cmplx::utils::ComplexNumber("53 - 10i");
+  auto cn3 = cmplx::utils::ComplexNumber("-12 + 40i");
+  auto cn4 = cmplx::utils::ComplexNumber("-53.3 - 45930.30i");
+  auto cn5 = cmplx::utils::ComplexNumber("-53.3 +40.353i");
 
   EXPECT_EQ(cn.Real, 5.1);
   EXPECT_EQ(cn.Imaginary, 7.4);
