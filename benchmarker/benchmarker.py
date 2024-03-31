@@ -26,7 +26,9 @@ parser.add_argument("--size", type=int, help="Size of the input data", default=1
 DOUBLE_MIN = -1000
 DOUBLE_MAX = 1000
 
-rand_double = lambda: random.uniform(DOUBLE_MIN, DOUBLE_MAX)
+
+def rand_double():
+    random.uniform(DOUBLE_MIN, DOUBLE_MAX)
 
 
 def generate_data(filen, size):
