@@ -56,7 +56,7 @@ public:
   }
 
   bool operator>(const ComplexNumber &Other) {
-	return !(*this < Other);
+	return !(*this <= Other);
   }
 
   bool operator>=(const ComplexNumber &Other) {
