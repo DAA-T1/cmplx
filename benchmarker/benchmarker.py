@@ -7,7 +7,7 @@ import time
 import pandas as pd
 import re
 
-VERSION = "0.0.2"
+VERSION = "0.0.3"
 
 parser = argparse.ArgumentParser(
     description="Benchmarking tool", prog="benchmarker", usage="%(prog)s [options]"
@@ -81,7 +81,7 @@ def rand_double():
 def generate_data(size, gen_count):
     data = [
         [rand_double() + rand_double() * 1j for _ in range(size)]
-        for _ in range(gen_count)
+        for j in range(gen_count)
     ]
 
     return data
@@ -92,7 +92,8 @@ def write_data_to_file(filen, data, size, gen_count):
         f.write(f"{gen_count} {size}\n")
         for d in data:
             txt_form = [f"{d.real:10.2f} {d.imag:+10.2f}i" for d in d]
-            f.write(", ".join(txt_form) + "\n")
+            joint = ", ".join(txt_form)
+            f.write(f"{joint}\n")
 
 
 def get_files_in_test_directory(dir_path):
