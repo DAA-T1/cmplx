@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="main - heap" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="--heap --time --print --file file.txt" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$PROJECT_DIR$/testfiles" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cmplx" TARGET_NAME="main" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="cmplx" RUN_TARGET_NAME="main">
+  <configuration default="false" name="main - heap" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="--heap --print --time --comparecount --file file.txt" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$PROJECT_DIR$/testfiles" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cmplx" TARGET_NAME="main" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="cmplx" RUN_TARGET_NAME="main">
     <method v="2">
       <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
     </method>

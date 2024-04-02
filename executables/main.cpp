@@ -21,7 +21,7 @@ int main(int Argc, char *Argv[]) {
   int SortFlag = -1;
   bool ToPrintTime = false;
   bool ToPrintArray = false;
-  bool ToPrintComparisonCount = true;
+  bool ToPrintComparisonCount = false;
 
   std::string FileName;
   for (int I = 1; I < Argc; I++) {
@@ -35,6 +35,8 @@ int main(int Argc, char *Argv[]) {
 	  FileName = Argv[++I];
 	} else if (!strcmp(Argv[I], "--print")) {
 	  ToPrintArray = true;
+	} else if (!strcmp(Argv[I], "--comparecount")) {
+	  ToPrintComparisonCount = true;
 	}
   }
 
