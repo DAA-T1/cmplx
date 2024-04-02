@@ -12,5 +12,6 @@
 #include <string>
 
 namespace cmplx::readfile {
-void readFromFile(std::string FileName, cmplx::utils::ComplexNumber **Arr, int &N);
+void readMultipleArraysFromFile(std::string FileName, cmplx::utils::ComplexNumber ***ArrayOfArrays, int &N, int &ArrayCount);
+void extractArrayFromLine(std::string Line, cmplx::utils::ComplexNumber **Arr);
 }// namespace cmplx::readfile

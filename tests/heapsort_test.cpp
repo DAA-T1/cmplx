@@ -5,9 +5,38 @@
 ///
 //===-------------------------------------------------------------===//
 
+#include "cmplx/utils/complex.h"
 #include <cmplx/heapsort/heapsort.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
+
+TEST(HeapSortTest, SingleSortTest) {
+  int V[] = {42};
+  cmplx::heapsort::sort(V, 1);
+
+  ASSERT_THAT(V, testing::ElementsAre(42));
+}
+
+TEST(HeapSortTest, SortedArrayTest) {
+  int V[] = {0, 6, 8, 9, 10, 15};
+  cmplx::heapsort::sort(V, 6);
+
+  ASSERT_THAT(V, testing::ElementsAre(0, 6, 8, 9, 10, 15));
+}
+
+TEST(HeapSortTest, UnSortedArrayTest) {
+  int V[] = {16, 10, 9, 8, -2};
+  cmplx::heapsort::sort(V, 5);
+
+  ASSERT_THAT(V, testing::ElementsAre(-2, 8, 9, 10, 16));
+}
+
+TEST(HeapSortTest, DuplicateElementArrayTest) {
+  int V[] = {1, 1, 5, 4, 4, 3};
+  cmplx::heapsort::sort(V, 6);
+
+  ASSERT_THAT(V, testing::ElementsAre(1, 1, 3, 4, 4, 5));
+}
 
 // Test for HeapSort with integers.
 TEST(HeapSortTest, SortTest) {
@@ -30,4 +59,17 @@ TEST(HeapSortTest, FloatSortTest) {
   cmplx::heapsort::sort(Nums, 7);
 
   ASSERT_THAT(Nums, testing::ElementsAre(-0.00000032, 0, 0.0001, 0.2, 10.132, 100.011, 100.012));
+}
+
+TEST(HeapSortTest, ComplexNumberTest) {
+  cmplx::utils::ComplexNumber V[] = {cmplx::utils::ComplexNumber("1 + 1i"),
+									 cmplx::utils::ComplexNumber("-1 + 2i"),
+									 cmplx::utils::ComplexNumber("0 + 0i"),
+									 cmplx::utils::ComplexNumber("54 + 3i")};
+  cmplx::heapsort::sort(V, 4);
+
+  EXPECT_EQ(V[0], cmplx::utils::ComplexNumber("0 + 0i"));
+  EXPECT_EQ(V[1], cmplx::utils::ComplexNumber("1 + 1i"));
+  EXPECT_EQ(V[2], cmplx::utils::ComplexNumber("-1 + 2i"));
+  EXPECT_EQ(V[3], cmplx::utils::ComplexNumber("54 + 3i"));
 }

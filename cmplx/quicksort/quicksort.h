@@ -10,6 +10,8 @@
 
 namespace cmplx::quicksort {
 
+int ComparisonCount = 0;
+
 template<typename T>
 void swap(T &A, T &B) {
   T Temp = A;
@@ -24,9 +26,11 @@ int partition(T *Arr, int Left, int Right) {
   int J = Right;
   while (I < J) {
 	while (Arr[I] <= Pivot && I < Right) {
+	  ComparisonCount++;
 	  I++;
 	}
 	while (Arr[J] > Pivot && J > Left) {
+	  ComparisonCount++;
 	  J--;
 	}
 	if (I < J) {
@@ -48,7 +52,11 @@ void qSort(T *Arr, int Left, int Right) {
 }
 
 template<typename T>
-void sort(T *Arr, int Len) {
+int sort(T *Arr, int Len) {
+  ComparisonCount = 0;
+
   qSort(Arr, 0, Len - 1);
+
+  return ComparisonCount;
 }
 }// namespace cmplx::quicksort

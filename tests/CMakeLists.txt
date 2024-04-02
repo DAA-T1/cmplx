@@ -18,6 +18,7 @@ target_link_libraries(
         GTest::gtest_main
         GTest::gmock_main
         heapsort
+        utils
 )
 
 add_executable(

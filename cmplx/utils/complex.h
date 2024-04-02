@@ -56,7 +56,7 @@ public:
   }
 
   bool operator>(const ComplexNumber &Other) {
-	return !(*this < Other);
+	return !(*this <= Other);
   }
 
   bool operator>=(const ComplexNumber &Other) {
@@ -67,7 +67,7 @@ public:
 	return (*this < Other) || (*this == Other);
   }
 
-  bool operator==(const ComplexNumber &Other) {
+  bool operator==(const ComplexNumber &Other) const {
 	return (this->L2Norm == Other.L2Norm);
   }
 
