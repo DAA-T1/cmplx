@@ -24,15 +24,19 @@ int partition(T *Arr, int Left, int Right) {
   T Pivot = Arr[Left];
   int I = Left;
   int J = Right;
+
   while (I < J) {
+	ComparisonCount++;
+
 	while (Arr[I] <= Pivot && I < Right) {
-	  ComparisonCount++;
+	  ComparisonCount += 2;
 	  I++;
 	}
 	while (Arr[J] > Pivot && J > Left) {
-	  ComparisonCount++;
+	  ComparisonCount += 2;
 	  J--;
 	}
+	ComparisonCount++;
 	if (I < J) {
 	  swap(Arr[I], Arr[J]);
 	}
@@ -43,6 +47,7 @@ int partition(T *Arr, int Left, int Right) {
 
 template<typename T>
 void qSort(T *Arr, int Left, int Right) {
+  ComparisonCount++;
   if (Left >= Right) {
 	return;
   }

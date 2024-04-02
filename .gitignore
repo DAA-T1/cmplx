@@ -60,5 +60,9 @@ test/test_runner
 /cmake-build-release
 testfiles/dyn_testfile.txt
 testfiles/testcase_*.txt
+testfiles/XXX_*.txt
 benchmarker/output.txt
 benchmarker/output**
+benchmarker/temp_**
+
+temp_testfiles_backup

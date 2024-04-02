@@ -40,17 +40,17 @@ public:
 	auto Right = this->right(Root);
 	int Largest;
 
+	ComparisonCount += 2;
 	if (Left <= this->HeapSize && this->HeapArr[Left] > this->HeapArr[Root]) {
-	  ComparisonCount++;
 	  Largest = Left;
 	} else {
-	  ComparisonCount++;
 	  Largest = Root;
 	}
+	ComparisonCount += 2;
 	if (Right <= this->HeapSize && this->HeapArr[Right] > this->HeapArr[Largest]) {
-	  ComparisonCount++;
 	  Largest = Right;
 	}
+	ComparisonCount++;
 	if (Largest != Root) {
 	  exchange(Root, Largest);
 	  this->maxHeapify(Largest);
