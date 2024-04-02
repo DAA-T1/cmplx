@@ -93,7 +93,7 @@ def get_files_in_test_directory(dir_path):
 
     for _, dirs, files in os.walk(dir_path):
         for file in files:
-            if file.endswith(".txt") and file.contains("testcase"):
+            if file.endswith(".txt") and file.startswith("testcase_"):
                 yield file
 
 
@@ -139,7 +139,7 @@ def run_benchmark(args):
         sys.exit(1)
 
     for file in get_files_in_test_directory(args.testspath):
-        print(file)
+        print(f"Running testfile {file}")
 
 
 if __name__ == "__main__":
