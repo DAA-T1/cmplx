@@ -5,8 +5,8 @@
 ///
 //===-------------------------------------------------------------===//
 
+#include "cmplx/utils/complex.h"
 #include <cmplx/heapsort/heapsort.h>
-//#include <cmplx/utils/complex.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
@@ -59,4 +59,17 @@ TEST(HeapSortTest, FloatSortTest) {
   cmplx::heapsort::sort(Nums, 7);
 
   ASSERT_THAT(Nums, testing::ElementsAre(-0.00000032, 0, 0.0001, 0.2, 10.132, 100.011, 100.012));
+}
+
+TEST(HeapSortTest, ComplexNumberTest) {
+  cmplx::utils::ComplexNumber V[] = {cmplx::utils::ComplexNumber("1 + 1i"),
+									 cmplx::utils::ComplexNumber("-1 + 2i"),
+									 cmplx::utils::ComplexNumber("0 + 0i"),
+									 cmplx::utils::ComplexNumber("54 + 3i")};
+  cmplx::heapsort::sort(V, 4);
+
+  EXPECT_EQ(V[0], cmplx::utils::ComplexNumber("0 + 0i"));
+  EXPECT_EQ(V[1], cmplx::utils::ComplexNumber("1 + 1i"));
+  EXPECT_EQ(V[2], cmplx::utils::ComplexNumber("-1 + 2i"));
+  EXPECT_EQ(V[3], cmplx::utils::ComplexNumber("54 + 3i"));
 }

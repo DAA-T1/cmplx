@@ -67,7 +67,7 @@ public:
 	return (*this < Other) || (*this == Other);
   }
 
-  bool operator==(const ComplexNumber &Other) {
+  bool operator==(const ComplexNumber &Other) const {
 	return (this->L2Norm == Other.L2Norm);
   }
 
