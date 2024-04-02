@@ -3,8 +3,9 @@ import sys
 import argparse
 import subprocess
 import random
-import statistics
-from tqdm import tqdm
+import time
+import pandas as pd
+import re
 
 VERSION = "0.0.2"
 
@@ -62,6 +63,11 @@ parser.add_argument(
 parser.add_argument(
     "--seed", type=int, help="Seed for random number generator", default=42
 )
+
+parser.add_argument(
+    "--output", type=str, help="Output folder name (relative)", default="output"
+)
+
 
 # important: actually putting the values in the range (e308), will make the RNG just print inf or -inf
 DOUBLE_MIN = -10e5
@@ -138,8 +144,36 @@ def run_benchmark(args):
         print("Testfiles folder was not found.")
         sys.exit(1)
 
+    if not os.path.exists(args.output):
+        os.makedirs(args.output)
+
+    if args.algorithm is None:
+        print("Please specify an algorithm.")
+        sys.exit(1)
+
     for file in get_files_in_test_directory(args.testspath):
-        print(f"Running testfile {file}")
+        start = time.time()
+
+        print(f"Running testfile {file} with {args.algorithm} algorithm")
+
+        command = f"{args.execpath} --{args.algorithm.lower()} --time --comparecount --file {os.path.join(args.testspath, file)}"
+        
+        output_df = pd.DataFrame(columns=["time", "comparison_count"])
+
+        algo_output = subprocess.run(command, shell=True, capture_output=True, text=True)
+
+        times = re.findall(r"Time: (\d+)ns", algo_output.stdout)
+        comparisons = re.findall(r"Comparisons: (\d+)", algo_output.stdout)
+
+        output_df["time"] = times
+        output_df["comparison_count"] = comparisons
+
+        outputpath = os.path.join(args.output, f"output_{args.algorithm}_{file}.csv")
+
+        output_df.to_csv(outputpath, index=False)
+            
+        end = time.time()
+        print(f"Saved output to {outputpath}. Took {(end - start):.4f}seconds")
 
 
 if __name__ == "__main__":
@@ -155,37 +189,6 @@ if __name__ == "__main__":
         run_generator(args)
     elif args.run:
         run_benchmark(args)
-
-    # if args.specific:
-    #     filename = os.path.join(base_testfile_folder, args.specific)
-    # else:
-    #     print(f"Size: {args.size}")
-    #     filename = os.path.join(base_testfile_folder, "dyn_testfile.txt")
-
-    # if args.algorithm is None:
-    #     print("Please specify an algorithm.")
-    #     sys.exit(1)
-    # else:
-    #     print(f"Algorithm: {args.algorithm}")
-    #     command = f"{path_to_main} --{args.algorithm.lower()} --time --file {filename}"
-
-    # arr = []
-
-    # print(f"Seed: {args.seed}")
-    # random.seed(args.seed)
-
-    # for _ in tqdm(range(args.repeat)):
-    #     if args.random:
-    #         generate_data(filename, args.size)
-
-    #     output = subprocess.run(command, shell=True, capture_output=True, text=True)
-    #     time_taken_nanoseconds = output.stdout.split("\n")[0].split(" ")[-1].strip("ns")
-    #     arr += [int(time_taken_nanoseconds)]
-
-    # if args.output_raw:
-    #     with open(args.output_raw, "w") as f:
-    #         str_arr = map(str, arr)
-    #         f.write("\n".join(str_arr) + "\n")
 
     # avg = statistics.mean(arr)
     # maxval = max(arr)
