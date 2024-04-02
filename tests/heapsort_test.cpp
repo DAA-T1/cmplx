@@ -6,8 +6,37 @@
 //===-------------------------------------------------------------===//
 
 #include <cmplx/heapsort/heapsort.h>
+//#include <cmplx/utils/complex.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
+
+TEST(HeapSortTest, SingleSortTest) {
+  int V[] = {42};
+  cmplx::heapsort::sort(V, 1);
+
+  ASSERT_THAT(V, testing::ElementsAre(42));
+}
+
+TEST(HeapSortTest, SortedArrayTest) {
+  int V[] = {0, 6, 8, 9, 10, 15};
+  cmplx::heapsort::sort(V, 6);
+
+  ASSERT_THAT(V, testing::ElementsAre(0, 6, 8, 9, 10, 15));
+}
+
+TEST(HeapSortTest, UnSortedArrayTest) {
+  int V[] = {16, 10, 9, 8, -2};
+  cmplx::heapsort::sort(V, 5);
+
+  ASSERT_THAT(V, testing::ElementsAre(-2, 8, 9, 10, 16));
+}
+
+TEST(HeapSortTest, DuplicateElementArrayTest) {
+  int V[] = {1, 1, 5, 4, 4, 3};
+  cmplx::heapsort::sort(V, 6);
+
+  ASSERT_THAT(V, testing::ElementsAre(1, 1, 3, 4, 4, 5));
+}
 
 // Test for HeapSort with integers.
 TEST(HeapSortTest, SortTest) {
