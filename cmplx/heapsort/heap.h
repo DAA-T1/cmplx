@@ -10,7 +10,7 @@
 #include <math.h>
 
 namespace cmplx::heapsort {
-int ComparisonCount;
+int ComparisonCount = 0;
 
 template<class T>
 class MaxHeap {
