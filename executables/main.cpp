@@ -84,7 +84,7 @@ int main(int Argc, char *Argv[]) {
 	}
 
 	if (ToPrintComparisonCount) {
-	  std::cout << "Comparisions: " << ComparisonCount << std::endl;
+	  std::cout << "Comparisons: " << ComparisonCount << std::endl;
 	}
 
 	delete Arr;
