@@ -11,7 +11,7 @@
 
 namespace cmplx::heapsort {
 template<typename T>
-void sort(T *Arr, int N) {
+int sort(T *Arr, int N) {
   auto *Heap = new cmplx::heapsort::MaxHeap(Arr, N);
   Heap->heapSort();
   delete Heap;

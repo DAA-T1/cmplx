@@ -6,27 +6,47 @@
 //===--------------------------------------------------------------------===//
 
 #include <cmplx/readfile/readfile.h>
-namespace cmplx::readfile {
-void readFromFile(std::string FileName, cmplx::utils::ComplexNumber **Arr, int &N) {
-  std::string Line;
-  std::ifstream MyFile(FileName);
+#include <iostream>
+#include <string>
 
-  if (MyFile.is_open()) {
-	std::getline(MyFile, Line);
-	MyFile.close();
-  } else {
-	std::cout << "Unable to open file";
+namespace cmplx::readfile {
+
+void readMultipleArraysFromFile(std::string FileName, cmplx::utils::ComplexNumber ***ArrayOfArrays, int &N, int &ArrayCount) {
+
+  std::string ArrayLine;
+  std::string TmpCount;
+  std::string TmpN;
+  std::ifstream MyFile(FileName, std::ifstream::in);// Open the file
+
+  if (!MyFile.is_open()) {
+	std::cerr << "Unable to open file: " << FileName << std::endl;
 	std::exit(1);
   }
-  Line += ',';
-  int Count = 0;
-  for (auto &C : Line) {
-	if (C == ',') {
-	  Count++;
-	}
+
+  std::getline(MyFile, TmpCount, ' ');
+  ArrayCount = std::stoi(TmpCount);
+
+  std::getline(MyFile, TmpN, '\n');
+  N = std::stoi(TmpN);
+
+  // read the arrays
+
+  // allocate memory for the array
+  *ArrayOfArrays = new cmplx::utils::ComplexNumber *[ArrayCount];
+
+  for (int I = 0; I < ArrayCount; I++) {
+	std::getline(MyFile, ArrayLine, '\n');
+
+	// allocate space for the particular array
+	(*ArrayOfArrays)[I] = new cmplx::utils::ComplexNumber[N]();
+
+	extractArrayFromLine(ArrayLine, &(*ArrayOfArrays)[I]);
   }
-  N = Count;
-  *Arr = new cmplx::utils::ComplexNumber[N]();
+
+  MyFile.close();
+}
+
+void extractArrayFromLine(std::string Line, cmplx::utils::ComplexNumber **Arr) {
 
   int I = 0;
   std::string Tmp = "";
@@ -41,4 +61,5 @@ void readFromFile(std::string FileName, cmplx::utils::ComplexNumber **Arr, int &
 	}
   }
 }
+
 }// namespace cmplx::readfile

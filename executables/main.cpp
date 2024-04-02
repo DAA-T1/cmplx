@@ -19,8 +19,10 @@ int main(int Argc, char *Argv[]) {
 	exit(1);
   }
   int SortFlag = -1;
-  bool Time = false;
+  bool ToPrintTime = false;
   bool ToPrintArray = false;
+  bool ToPrintComparisionCount = true;
+
   std::string FileName;
   for (int I = 1; I < Argc; I++) {
 	if (!strcmp(Argv[I], "--heap")) {
@@ -28,41 +30,65 @@ int main(int Argc, char *Argv[]) {
 	} else if (!strcmp(Argv[I], "--quick")) {
 	  SortFlag = 1;
 	} else if (!strcmp(Argv[I], "--time")) {
-	  Time = true;
+	  ToPrintTime = true;
 	} else if (!strcmp(Argv[I], "--file")) {
 	  FileName = Argv[++I];
 	} else if (!strcmp(Argv[I], "--print")) {
 	  ToPrintArray = true;
 	}
   }
-  cmplx::utils::ComplexNumber *Arr;
+
+  if (SortFlag == -1) {
+	std::cerr << "Invalid Sort Flag. Which Algorithm to use?" << std::endl;
+	exit(1);
+  }
+
+  cmplx::utils::ComplexNumber **ComplexNumberArrays;
+
   int N;
-  cmplx::readfile::readFromFile(FileName, &Arr, N);
+  int ArrayCount;
+  // function to read multiple arrays from a file
+
+  cmplx::readfile::readMultipleArraysFromFile(FileName, &ComplexNumberArrays, N, ArrayCount);
+
+  // ArrayCount is the number of arrays extracted
+  // N is the number of elements in each array
+  // ComplexNumberArrays is a pointer to an array of pointers to ComplexNumber objects
 
   double_time Start;
   double_time Stop;
+  int ComparisionCount;
 
-  if (SortFlag == 0) {
-	Start = std::chrono::high_resolution_clock::now();
-	cmplx::heapsort::sort(Arr, N);
-	Stop = std::chrono::high_resolution_clock::now();
-  } else if (SortFlag == 1) {
-	Start = std::chrono::high_resolution_clock::now();
-	cmplx::quicksort::sort(Arr, N);
-	Stop = std::chrono::high_resolution_clock::now();
-  } else {
-	std::cerr << "Invalid Sort Flag. Which Algorithm to use?" << std::endl;
-  }
+  for (int I = 0; I < ArrayCount; I++) {
 
-  auto Duration = std::chrono::duration_cast<std::chrono::nanoseconds>(Stop - Start);
+	cmplx::utils::ComplexNumber *Arr = ComplexNumberArrays[I];
 
-  if (ToPrintArray) {
-	std::cout << "Sorted Array: ";
-	cmplx::utils::printArray(Arr, N);
-  }
+	if (SortFlag == 0) {
+	  ToPrintTime ? Start = std::chrono::high_resolution_clock::now() : Start;
+	  ComparisionCount = cmplx::heapsort::sort(Arr, N);
+	  ToPrintTime ? Stop = std::chrono::high_resolution_clock::now() : Stop;
+	} else {
+	  ToPrintTime ? Start = std::chrono::high_resolution_clock::now() : Start;
+	  ComparisionCount = cmplx::quicksort::sort(Arr, N);
+	  ToPrintTime ? Stop = std::chrono::high_resolution_clock::now() : Stop;
+	}
 
-  if (Time) {
-	std::cout << "Took " << Duration.count() << "ns" << std::endl;
+	if (ToPrintArray) {
+	  std::cout << "Sorted Array: ";
+	  cmplx::utils::printArray(Arr, N);
+	}
+
+	if (ToPrintTime) {
+	  auto Duration = std::chrono::duration_cast<std::chrono::nanoseconds>(Stop - Start);
+	  std::cout << "Time: " << Duration.count() << "ns" << std::endl;
+	}
+
+	if (ToPrintComparisionCount) {
+	  std::cout << "Comparisions: " << ComparisionCount << std::endl;
+	}
+
 	delete Arr;
   }
+
+  delete[] ComplexNumberArrays;
 }

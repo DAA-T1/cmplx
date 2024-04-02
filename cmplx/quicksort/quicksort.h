@@ -48,7 +48,7 @@ void qSort(T *Arr, int Left, int Right) {
 }
 
 template<typename T>
-void sort(T *Arr, int Len) {
+int sort(T *Arr, int Len) {
   qSort(Arr, 0, Len - 1);
 }
 }// namespace cmplx::quicksort
