@@ -104,8 +104,13 @@ def get_files_in_test_directory(dir_path):
 
 
 def sort(data, reverse=False):
+    def l2norm(x: complex):
+        return (x.real**2 + x.imag**2) ** (0.5)
+
     for i in range(len(data)):
-        data[i] = sorted(data[i], key=lambda x: (abs(x), x.real, x.imag), reverse=reverse)
+        data[i] = sorted(
+            data[i], key=lambda x: (l2norm(x), x.real, x.imag), reverse=reverse
+        )
     return data
 
 
@@ -157,10 +162,12 @@ def run_benchmark(args):
         print(f"Running testfile {file} with {args.algorithm} algorithm")
 
         command = f"{args.execpath} --{args.algorithm.lower()} --time --comparecount --file {os.path.join(args.testspath, file)}"
-        
+
         output_df = pd.DataFrame(columns=["time", "comparison_count"])
 
-        algo_output = subprocess.run(command, shell=True, capture_output=True, text=True)
+        algo_output = subprocess.run(
+            command, shell=True, capture_output=True, text=True
+        )
 
         times = re.findall(r"Time: (\d+)ns", algo_output.stdout)
         comparisons = re.findall(r"Comparisons: (\d+)", algo_output.stdout)
@@ -171,7 +178,7 @@ def run_benchmark(args):
         outputpath = os.path.join(args.output, f"output_{args.algorithm}_{file}.csv")
 
         output_df.to_csv(outputpath, index=False)
-            
+
         end = time.time()
         print(f"Saved output to {outputpath}. Took {(end - start):.4f}seconds")
 
