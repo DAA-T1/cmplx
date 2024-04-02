@@ -10,6 +10,8 @@
 #include <math.h>
 
 namespace cmplx::heapsort {
+int ComparisonCount;
+
 template<class T>
 class MaxHeap {
 public:
@@ -38,12 +40,17 @@ public:
 	auto Right = this->right(Root);
 	int Largest;
 
-	if (Left <= this->HeapSize && this->HeapArr[Left] > this->HeapArr[Root])
+	if (Left <= this->HeapSize && this->HeapArr[Left] > this->HeapArr[Root]) {
+	  ComparisonCount++;
 	  Largest = Left;
-	else
+	} else {
+	  ComparisonCount++;
 	  Largest = Root;
-	if (Right <= this->HeapSize && this->HeapArr[Right] > this->HeapArr[Largest])
+	}
+	if (Right <= this->HeapSize && this->HeapArr[Right] > this->HeapArr[Largest]) {
+	  ComparisonCount++;
 	  Largest = Right;
+	}
 	if (Largest != Root) {
 	  exchange(Root, Largest);
 	  this->maxHeapify(Largest);
@@ -53,8 +60,9 @@ public:
   void buildMaxHeap() {
 	// 1 less than length since first element is discarded
 	this->HeapSize = this->Length - 1;
-	for (int Idx = parent(this->Length - 1); Idx >= 0; Idx--)
+	for (int Idx = parent(this->Length - 1); Idx >= 0; Idx--) {
 	  this->maxHeapify(Idx);
+	}
   }
 
   void heapSort() {

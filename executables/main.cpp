@@ -21,7 +21,7 @@ int main(int Argc, char *Argv[]) {
   int SortFlag = -1;
   bool ToPrintTime = false;
   bool ToPrintArray = false;
-  bool ToPrintComparisionCount = true;
+  bool ToPrintComparisonCount = true;
 
   std::string FileName;
   for (int I = 1; I < Argc; I++) {
@@ -57,7 +57,7 @@ int main(int Argc, char *Argv[]) {
 
   double_time Start;
   double_time Stop;
-  int ComparisionCount;
+  int ComparisonCount;
 
   for (int I = 0; I < ArrayCount; I++) {
 
@@ -65,11 +65,11 @@ int main(int Argc, char *Argv[]) {
 
 	if (SortFlag == 0) {
 	  ToPrintTime ? Start = std::chrono::high_resolution_clock::now() : Start;
-	  ComparisionCount = cmplx::heapsort::sort(Arr, N);
+	  ComparisonCount = cmplx::heapsort::sort(Arr, N);
 	  ToPrintTime ? Stop = std::chrono::high_resolution_clock::now() : Stop;
 	} else {
 	  ToPrintTime ? Start = std::chrono::high_resolution_clock::now() : Start;
-	  ComparisionCount = cmplx::quicksort::sort(Arr, N);
+	  ComparisonCount = cmplx::quicksort::sort(Arr, N);
 	  ToPrintTime ? Stop = std::chrono::high_resolution_clock::now() : Stop;
 	}
 
@@ -83,8 +83,8 @@ int main(int Argc, char *Argv[]) {
 	  std::cout << "Time: " << Duration.count() << "ns" << std::endl;
 	}
 
-	if (ToPrintComparisionCount) {
-	  std::cout << "Comparisions: " << ComparisionCount << std::endl;
+	if (ToPrintComparisonCount) {
+	  std::cout << "Comparisions: " << ComparisonCount << std::endl;
 	}
 
 	delete Arr;
