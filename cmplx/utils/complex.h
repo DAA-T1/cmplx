@@ -1,7 +1,7 @@
 //===-- cmplx/utils/complex.h - Complex Implementation ----------------------------===//
 ///
 /// \file
-/// This file contains the generic implementation for the Complex Class Data structure.
+/// This file contains the generic implementation for the Complex Class Data structure and it's declaration.
 ///
 //===------------------------------------------------------------------------------===//
 

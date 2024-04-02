@@ -23,9 +23,11 @@ void readMultipleArraysFromFile(std::string FileName, cmplx::utils::ComplexNumbe
 	std::exit(1);
   }
 
+  // read len of file
   std::getline(MyFile, TmpCount, ' ');
   ArrayCount = std::stoi(TmpCount);
 
+  // read size of arrays
   std::getline(MyFile, TmpN, '\n');
   N = std::stoi(TmpN);
 
@@ -51,6 +53,7 @@ void extractArrayFromLine(std::string Line, cmplx::utils::ComplexNumber **Arr) {
   int I = 0;
   std::string Tmp = "";
   for (auto &C : Line) {
+	// each complex number is separated by a comma
 	if (C == ',') {
 	  (*Arr)[I++] = cmplx::utils::ComplexNumber(Tmp);
 	  Tmp = "";
