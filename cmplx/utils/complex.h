@@ -16,6 +16,12 @@ namespace cmplx {
 namespace utils {
 
 class ComplexNumber {
+private:
+  double Real;
+  double Imaginary;
+
+  double getL2Norm() const;
+
 public:
   double L2Norm;
 
@@ -46,11 +52,11 @@ public:
   }
 
   bool operator<(const ComplexNumber &Other) {
-	if (*this == Other) {
-	  if (this->Real < Other.Real) {
+	if (this->L2Norm == Other.L2Norm) {
+	  if (this->Imaginary < Other.Imaginary) {
 		return true;
 	  }
-	  return (this->Imaginary < Other.Imaginary);
+	  return (this->Real < Other.Real);
 	}
 	return (this->L2Norm < Other.L2Norm);
   }
@@ -68,7 +74,7 @@ public:
   }
 
   bool operator==(const ComplexNumber &Other) const {
-	return (this->L2Norm == Other.L2Norm);
+	return (this->L2Norm == Other.L2Norm && this->Real == Other.Real && this->Imaginary == Other.Imaginary);
   }
 
   bool operator!=(const ComplexNumber &Other) {
@@ -76,12 +82,6 @@ public:
   }
 
   friend std::ostream &operator<<(std::ostream &Os, const ComplexNumber &ToPrint);
-
-private:
-  double Real;
-  double Imaginary;
-
-  double getL2Norm() const;
 };
 
 std::ostream &operator<<(std::ostream &Os, const ComplexNumber &ToPrint);

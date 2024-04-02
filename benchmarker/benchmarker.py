@@ -59,7 +59,6 @@ parser.add_argument(
     default=os.path.join(os.path.dirname(__file__), "..", "testfiles"),
 )
 
-
 parser.add_argument(
     "--seed", type=int, help="Seed for random number generator", default=42
 )
@@ -67,7 +66,6 @@ parser.add_argument(
 parser.add_argument(
     "--output", type=str, help="Output folder name (relative)", default="output"
 )
-
 
 # important: actually putting the values in the range (e308), will make the RNG just print inf or -inf
 DOUBLE_MIN = -10e5
@@ -97,7 +95,6 @@ def write_data_to_file(filen, data, size, gen_count):
 
 
 def get_files_in_test_directory(dir_path):
-
     for _, dirs, files in os.walk(dir_path):
         for file in files:
             if file.endswith(".txt") and file.startswith("testcase_"):
@@ -106,17 +103,16 @@ def get_files_in_test_directory(dir_path):
 
 def sort(data, reverse=False):
     def l2norm(x: complex):
-        return (x.real**2 + x.imag**2) ** (0.5)
+        return (x.real ** 2 + x.imag ** 2) ** (0.5)
 
     for i in range(len(data)):
         data[i] = sorted(
-            data[i], key=lambda x: (l2norm(x), x.real, x.imag), reverse=reverse
+            data[i], key=lambda x: (l2norm(x), x.imag, x.real), reverse=reverse
         )
     return data
 
 
 def run_generator(args):
-
     print(f"Generating {args.gencount} arrays of size {args.gensize}")
     if not os.path.exists(args.testspath):
         print("Testfiles folder was not found. Please create a folder.")
@@ -141,7 +137,6 @@ def run_generator(args):
 
 
 def run_benchmark(args):
-
     if not os.path.exists(args.execpath):
         print("Executable not found.")
         sys.exit(1)
