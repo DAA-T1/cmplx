@@ -1,6 +1,9 @@
-//
-// Created by jalan on 30-03-2024.
-//
+//===-- cmplx/utils/main.cpp - Main Executable File ----------------------------===//
+///
+/// \file
+/// This file contains the main executable function.
+///
+//===------------------------------------------------------------------------------===//
 
 #include <chrono>
 #include <cmplx/heapsort/heapsort.h>
